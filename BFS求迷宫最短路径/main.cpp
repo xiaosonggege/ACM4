@@ -17,7 +17,7 @@ int main(int argc, char *argv[]){
 //    ofstream ofstrm;
 //    datagenerate(path, ofstrm);
     shared_ptr<Migong_bfs> m = make_shared<Migong_bfs>(path);
-//    m->information(cout);
+    m->information(cout);
     m->BFS_find_min_path();
     m->show(cout);
     return 0;

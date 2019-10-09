@@ -37,7 +37,7 @@ Migong_bfs::Migong_bfs(const string &s) {
         }
     }
     ifstrm.close();
-    len_row = this->migong.size(), len_col = this->migong[0].size();
+    len_row = this->migong.size()-1, len_col = this->migong[0].size()-1;
     vv = this->migong;
     x_end = this->end_point.first;
     y_end = this->end_point.second;
@@ -92,7 +92,7 @@ int Migong_bfs::BFS_find_min_path() {
     pair<pair<int, int>, vector<char>> tup = {{this->start_point.first, this->start_point.second}, {}};
     stack->push_back(tup);
     bfs(*stack, this->start_point.first, this->start_point.second);
-    this->min_line = (stack->cend()-1)->second;
+    this->min_line = (stack->cbegin())->second;
     return 0;
 }
 

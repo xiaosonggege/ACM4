@@ -24,22 +24,23 @@ bool find_point(const vector<pair<pair<int, int>, vector<char>>> &m, const int &
 int bfs(vector<pair<pair<int, int>, vector<char>>> &m, const int &x, const int &y){
     //如果位置未遍历过
     if (x == x_end && y == y_end) {
+        m.begin()->second.push_back(vv[x][y]);
         return 0;
     }
-    else if (!find_point(m, x, y, vv)){
-        if (x-1 >= 0 && vv[x-1][y] != '*') {
+    else {
+        if (x-1 >= 0 && vv[x-1][y] != '*' && !find_point(m, x-1, y, vv)) {
             m.push_back({{x-1, y}, vector<char>(m.begin()->second.begin(), m.begin()->second.end())});
             (m.end()-1)->second.push_back(vv[x][y]);
         }
-        if (x+1 <= len_col && vv[x+1][y] != '*') {
+        if (x+1 <= len_col && vv[x+1][y] != '*' && !find_point(m, x+1, y, vv)) {
             m.push_back({{x+1, y}, vector<char>(m.begin()->second.begin(), m.begin()->second.end())});
             (m.end()-1)->second.push_back(vv[x][y]);
         }
-        if (y-1 >= 0 && vv[x][y-1] != '*') {
+        if (y-1 >= 0 && vv[x][y-1] != '*' && !find_point(m, x, y-1, vv)) {
             m.push_back({{x, y-1}, vector<char>(m.begin()->second.begin(), m.begin()->second.end())});
             (m.end()-1)->second.push_back(vv[x][y]);
         }
-        if (y+1 <= len_row && vv[x][y+1] != '*') {
+        if (y+1 <= len_row && vv[x][y+1] != '*' && !find_point(m, x, y+1, vv)) {
             m.push_back({{x, y+1}, vector<char>(m.begin()->second.begin(), m.begin()->second.end())});
             (m.end()-1)->second.push_back(vv[x][y]);
         }
