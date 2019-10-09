@@ -7,18 +7,23 @@
 #include <fstream>
 #include <iterator>
 #include "MigongBFS.h"
+#include <memory>
 using namespace std;
+extern int len_row;
+extern int len_col;
 ofstream & datagenerate(const string &s, ofstream &out);
 int main(int argc, char *argv[]){
     string path = "/home/xiaosong/桌面/migongbfs";
-    ofstream ofstrm;
-    datagenerate(path, ofstrm);
+//    ofstream ofstrm;
+//    datagenerate(path, ofstrm);
+    shared_ptr<Migong_bfs> m = make_shared<Migong_bfs>(path);
+//    m->information(cout);
+    m->BFS_find_min_path();
+    m->show(cout);
     return 0;
 }
 ofstream & datagenerate(const string &s, ofstream &ofstrm){
     ofstrm.open(s, ios::app);
-    ofstrm << '0' << ' ' << '1' << ' ' << '*' << ' ' << '2' << ' ' << '3' << ' '\
-    << '\n' << '4' << ' ' << '5';
     ofstrm.close();
     return ofstrm;
 }

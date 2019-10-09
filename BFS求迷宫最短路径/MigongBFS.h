@@ -9,6 +9,7 @@
 #include <iostream>
 #include <string>
 using namespace std;
+extern int len_row, len_col;
 class Migong_bfs{
 private:
     vector<vector<char>> migong;
@@ -25,5 +26,6 @@ public:
     Migong_bfs & operator=(Migong_bfs &&);
     int BFS_find_min_path();
     ostream & show(ostream &) const;
+    ostream & information(ostream &) const;
 };
 #endif //ACM3_CLION_MIGONGBFS_H
