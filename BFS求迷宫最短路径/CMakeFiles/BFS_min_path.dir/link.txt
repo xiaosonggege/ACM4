@@ -1,0 +1,1 @@
+/usr/bin/c++   -fopenmp -g    CMakeFiles/BFS_min_path.dir/main.cpp.o CMakeFiles/BFS_min_path.dir/MigongBFS.cpp.o CMakeFiles/BFS_min_path.dir/Function.cpp.o  -o BFS_min_path 
