@@ -13,7 +13,8 @@ extern int len_row;
 extern int len_col;
 ofstream & datagenerate(const string &s, ofstream &out);
 int main(int argc, char *argv[]){
-    string path = "/home/xiaosong/桌面/migongbfs";
+    cout << argv[1] << endl;
+    string path = "/home/xiaosong/CLionProjects/ACM/BFS求迷宫最短路径/migongbfs";
 //    ofstream ofstrm;
 //    datagenerate(path, ofstrm);
     shared_ptr<Migong_bfs> m = make_shared<Migong_bfs>(path);
