@@ -1,1 +1,1 @@
-/usr/bin/c++   -fopenmp    CMakeFiles/UVa816.dir/main.cpp.o  -o UVa816 
+/usr/bin/c++   -fopenmp -g    CMakeFiles/UVa816.dir/main.cpp.o CMakeFiles/UVa816.dir/Abbott.cpp.o CMakeFiles/UVa816.dir/point.cpp.o  -o UVa816 

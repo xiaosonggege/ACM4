@@ -4,7 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/xiaosong/CLionProjects/ACM/UVa816-Abbott的复仇/Abbott.cpp" "/home/xiaosong/CLionProjects/ACM/UVa816-Abbott的复仇/CMakeFiles/UVa816.dir/Abbott.cpp.o"
   "/home/xiaosong/CLionProjects/ACM/UVa816-Abbott的复仇/main.cpp" "/home/xiaosong/CLionProjects/ACM/UVa816-Abbott的复仇/CMakeFiles/UVa816.dir/main.cpp.o"
+  "/home/xiaosong/CLionProjects/ACM/UVa816-Abbott的复仇/point.cpp" "/home/xiaosong/CLionProjects/ACM/UVa816-Abbott的复仇/CMakeFiles/UVa816.dir/point.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

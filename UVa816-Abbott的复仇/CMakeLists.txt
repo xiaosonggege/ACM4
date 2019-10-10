@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 3.10.2)
 project(ACM3_CLion)
-
 set(CMAKE_CXX_STANDARD 11)
 FIND_PACKAGE( OpenMP REQUIRED)
 if(OPENMP_FOUND)
@@ -10,4 +9,4 @@ if(OPENMP_FOUND)
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}")
     set(CMAKE_SHARE_LINKER_FLAGS "${CMAKE_SHARE_LINKER_FLAGS} ${OpenMP_SHARE_LINKER_FLAGS}")
 endif()
-add_executable(UVa816 main.cpp Abbott.h)
+add_executable(UVa816 main.cpp Abbott.h Abbott.cpp point.h point.cpp)
