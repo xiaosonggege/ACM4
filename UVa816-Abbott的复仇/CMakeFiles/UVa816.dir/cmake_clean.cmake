@@ -1,0 +1,10 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/UVa816.dir/main.cpp.o"
+  "UVa816.pdb"
+  "UVa816"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/UVa816.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()
