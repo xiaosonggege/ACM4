@@ -4,9 +4,15 @@
 
 #include "Abbott.h"
 #include <functional>
+#include <memory>
 using namespace std;
-extern map<char, function<void(int &, int &)>> moving_xy;
-Abbott::Abbott(const string &s) {
+using pairr = pair<pair<int, int>, vector<pair<int, int>>>;
+using tup_map = vector<pair<char, pairr>>;
+extern map<char, function<void(char, int , int )>> moving_xy;
+void BFS(const int &tar_x, const int &tar_y, tup_map &stack, const vector<vector<Point>> &migong, int &x, int &y, const char &dir);
+Abbott::Abbott(const pair<int, int> &start, const pair<int, int> &end, const char &direction,
+               const vector<vector<Point>> &migongs):
+start_position(start), end_position(end), start_direction(direction), migong(migongs){
 
 }
 
@@ -68,5 +74,21 @@ ostream &Abbott::show(ostream &os) {
 }
 
 void Abbott::moving_BFS() {
-
+    //定义临时队列,队列中每个节点记录节点坐标和该节点从根节点起的遍历节点序列坐标
+    shared_ptr<tup_map> stack = make_shared<tup_map>();
+    pairr tup = {this->start_position, {}};
+    stack->push_back({'N', tup});
+    //递归遍历
+    BFS(this->end_position.first, this->end_position.second, *stack, this->migong,
+            this->start_position.first, this->start_position.second, this->start_direction);
+    this->min_line = (stack->cbegin())->second.second;
 }
+
+ostream &Abbott::print_line(ostream &os) const {
+    for (const auto &e : this->min_line){
+        os << "(" << e.first << ", " << e.second << ") ";
+    }
+    os << endl;
+    return os;
+}
+

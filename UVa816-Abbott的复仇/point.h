@@ -7,10 +7,12 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <utility>
 using namespace std;
 class Point{
 public:
-    //记录节点可移动方向信息
+    //记录进入节点的朝向到可移动方向的映射信息
+    pair<int, int> zuobiao;
     map<char, vector<char>> come2go;
     Point() = default;
     Point(const string &s);

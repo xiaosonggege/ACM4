@@ -21,13 +21,14 @@ private:
     vector<pair<int, int>> min_line; //最短路径
 public:
     Abbott() = default;
-    Abbott(const string &);
+    Abbott(const pair<int, int> &, const pair<int, int> &, const char &, const vector<vector<Point>> &);
     Abbott(const Abbott &);
     Abbott(Abbott &&);
-    Abbott & operator=(const Abbott &);
+    Abbott & operator=(const Abbott &) ;
     Abbott & operator=(Abbott &&);
     ~Abbott();
     ostream & show(ostream &); //显示所有元素属性信息
     void moving_BFS(); //BFS算法搜索最短路径
+    ostream & print_line(ostream &os) const;
 };
 #endif //ACM3_CLION_ABBOTT_H

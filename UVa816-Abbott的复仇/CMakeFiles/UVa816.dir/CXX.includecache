@@ -6,6 +6,30 @@
 
 #IncludeRegexTransform: 
 
+/home/xiaosong/CLionProjects/ACM/UVa816-Abbott的复仇/Abbott.cpp
+Abbott.h
+/home/xiaosong/CLionProjects/ACM/UVa816-Abbott的复仇/Abbott.h
+functional
+-
+memory
+-
+
+/home/xiaosong/CLionProjects/ACM/UVa816-Abbott的复仇/Abbott.h
+vector
+-
+utility
+-
+string
+-
+fstream
+-
+sstream
+-
+iostream
+-
+point.h
+/home/xiaosong/CLionProjects/ACM/UVa816-Abbott的复仇/point.h
+
 /home/xiaosong/CLionProjects/ACM/UVa816-Abbott的复仇/main.cpp
 sstream
 -
@@ -15,6 +39,14 @@ iostream
 -
 vector
 -
+functional
+-
+map
+-
+memory
+-
+Abbott.h
+/home/xiaosong/CLionProjects/ACM/UVa816-Abbott的复仇/Abbott.h
 
 /home/xiaosong/CLionProjects/ACM/UVa816-Abbott的复仇/point.cpp
 point.h
@@ -28,5 +60,7 @@ string
 map
 -
 vector
+-
+utility
 -
 

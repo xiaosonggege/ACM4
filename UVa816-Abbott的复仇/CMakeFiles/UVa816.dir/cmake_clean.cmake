@@ -1,9 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/UVa816.dir/Abbott.cpp.o"
   "CMakeFiles/UVa816.dir/main.cpp.o"
+  "CMakeFiles/UVa816.dir/Abbott.cpp.o"
   "CMakeFiles/UVa816.dir/point.cpp.o"
-  "UVa816"
   "UVa816.pdb"
+  "UVa816"
 )
 
 # Per-language clean rules from dependency scanning.
