@@ -45,7 +45,7 @@ map<string, function<char()>> nextdir = {
         {"ER", []()->char {return 'S';}},
 };
 int main(int argc, char *argv[]){
-    cout << argv[1] << endl;
+//    cout << argv[1] << endl;
     const string &path = "/home/xiaosong/CLionProjects/ACM/UVa816-Abbott的复仇/file";
     ifstream ifstrm;
     ifstrm.open(path, ios::in);

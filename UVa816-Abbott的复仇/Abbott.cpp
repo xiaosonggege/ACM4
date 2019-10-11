@@ -86,7 +86,7 @@ void Abbott::moving_BFS() {
 
 ostream &Abbott::print_line(ostream &os) const {
     for (const auto &e : this->min_line){
-        os << "(" << e.first << ", " << e.second << ") ";
+        os << "(" << e.first+1 << ", " << e.second+1 << ") ";
     }
     os << endl;
     return os;
