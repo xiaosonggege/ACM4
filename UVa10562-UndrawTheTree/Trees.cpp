@@ -44,7 +44,10 @@ void UndrawTheTrees::reading() {
 }
 
 ostream & UndrawTheTrees::show(ostream &os) const &{
-
+    os << "多叉树深度优先遍历结果如下:" << endl;
+    for (auto const &e : this->result)
+        os << e << " ";
+    os << endl;
     return os;
 }
 
