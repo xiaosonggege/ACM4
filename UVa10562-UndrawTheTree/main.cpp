@@ -12,6 +12,7 @@
 using namespace std;
 using Graph = vector<vector<char>>;
 int main(int argc, char *argv[]){
+//    cout << argv[1] << endl;
     shared_ptr<string> path = make_shared<string>("/home/xiaosong/CLionProjects/ACM/UVa10562-UndrawTheTree/file");
     ifstream ifstrm;
     ifstrm.open(*path, ios::in);
@@ -33,12 +34,16 @@ int main(int argc, char *argv[]){
             UndrawTheTrees u(g);
             //对当前多叉树进行遍历
             u(cout);
-//            u.reading();
-//            u.show(cout);
+            u.reading();
+            u.show(cout);
             g.clear(); //准备读取下一颗多叉树
         }
     }
     ifstrm.close();
+    return 0;
+}
+bool isletter(const char &l){
+    if ((l >= 'A' && l <= 'Z') || (l >= 'a' && l <= 'z')) return 1;
     return 0;
 }
 

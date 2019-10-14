@@ -1,0 +1,3 @@
+/home/xiaosong/CLionProjects/ACM/UVa10562-UndrawTheTree/CMakeFiles/rebuild_cache.dir
+/home/xiaosong/CLionProjects/ACM/UVa10562-UndrawTheTree/CMakeFiles/UVa10562.dir
+/home/xiaosong/CLionProjects/ACM/UVa10562-UndrawTheTree/CMakeFiles/edit_cache.dir

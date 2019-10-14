@@ -1,0 +1,1 @@
+/usr/bin/c++   -fopenmp    CMakeFiles/UVa10562.dir/main.cpp.o CMakeFiles/UVa10562.dir/Trees.cpp.o  -o UVa10562 

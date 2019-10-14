@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/xiaosong/CLionProjects/ACM/UVa10562-UndrawTheTree/Trees.cpp
+Trees.h
+/home/xiaosong/CLionProjects/ACM/UVa10562-UndrawTheTree/Trees.h
+iostream
+-
+
+/home/xiaosong/CLionProjects/ACM/UVa10562-UndrawTheTree/Trees.h
+vector
+-
+string
+-
+iostream
+-
+
+/home/xiaosong/CLionProjects/ACM/UVa10562-UndrawTheTree/main.cpp
+Trees.h
+/home/xiaosong/CLionProjects/ACM/UVa10562-UndrawTheTree/Trees.h
+iostream
+-
+memory
+-
+vector
+-
+string
+-
+fstream
+-
+sstream
+-
+iterator
+-
+
