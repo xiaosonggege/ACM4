@@ -5,6 +5,7 @@
 #ifndef ACM3_CLION_SCULPTURE_H
 #define ACM3_CLION_SCULPTURE_H
 #include "Blocking_op.h"
+#include "Discretization.h"
 #include <fstream>
 #include <sstream>
 #include <vector>
