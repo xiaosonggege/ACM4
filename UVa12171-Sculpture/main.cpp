@@ -16,6 +16,7 @@ int main(int argc, char *argv[]){
     shared_ptr<Sculpture> s = make_shared<Sculpture>(path);
     s->show(cout);
     s->print(cout);
+    s->V_calc();
     return 0;
 }
 

@@ -3,6 +3,7 @@
 //
 
 #include "Sculpture.h"
+#include "Discretization.h"
 #include <iterator>
 #include <iomanip>
 using namespace std;
@@ -24,10 +25,9 @@ Sculpture::Sculpture(const Sculpture &s) {
     this->boxes = s.boxes;
     this->S = s.S;
     this->V = s.V;
-//    this->count = s.count;
 }
 
-Sculpture::Sculpture(Sculpture &&s) {
+Sculpture::Sculpture(Sculpture &&s) noexcept {
     this->file_path = s.file_path;
     this->boxes = s.boxes;
     this->S = s.S;
@@ -46,7 +46,7 @@ Sculpture &Sculpture::operator=(const Sculpture &s) {
     return *this;
 }
 
-Sculpture &Sculpture::operator=(Sculpture &&s) {
+Sculpture &Sculpture::operator=(Sculpture &&s) noexcept {
     this->file_path = s.file_path;
     this->boxes = s.boxes;
     this->S = s.S;
@@ -79,4 +79,12 @@ ostream &Sculpture::print(ostream &os) {
 Sculpture::~Sculpture() {
 
 }
+
+void Sculpture::V_calc() {
+    discretization xyz_dis;
+    auto xyz = xyz_dis(this->boxes); //xyz为xyz三轴离散坐标
+    Blocking blocking({get<0>(xyz), get<1>(xyz), get<2>(xyz)});
+    blocking.show(cout);
+}
+
 

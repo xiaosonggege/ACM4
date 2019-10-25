@@ -11,8 +11,11 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <tuple>
 using namespace std;
+class discretization;
 class Sculpture{
+    friend class discretization;
 private:
     string file_path;
     vector<vector<int>> boxes; //存储所有盒子的容器
@@ -21,12 +24,13 @@ private:
 public:
     Sculpture() = default;
     Sculpture(const string &);
-    explicit Sculpture(const Sculpture &);
-    explicit Sculpture(Sculpture &&);
+    Sculpture(const Sculpture &);
+    Sculpture(Sculpture &&) noexcept ;
     ~Sculpture();
     Sculpture & operator=(const Sculpture &);
-    Sculpture & operator=(Sculpture &&);
+    Sculpture & operator=(Sculpture &&) noexcept ;
     static ostream & show(ostream &); //输出文件中需要统计的立方体个数
     ostream & print(ostream &); //输出单个立方体的各项信息
+    void V_calc();
 };
 #endif //ACM3_CLION_SCULPTURE_H
