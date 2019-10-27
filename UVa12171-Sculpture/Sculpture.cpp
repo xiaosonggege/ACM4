@@ -86,6 +86,18 @@ void Sculpture::V_calc() {
     Blocking blocking({get<0>(xyz), get<1>(xyz), get<2>(xyz)});
     blocking.show(cout);
     vector<vector<int>> left_up_points = blocking(this->boxes);
+    //将各轴离散坐标进行差分得到离散坐标各点的实际长度
+    void diff(vector<int> &series);
+    vector<int> x_delta = get<0>(xyz), y_delta = get<1>(xyz), z_delta = get<2>(xyz);
+    diff(x_delta);
+    diff(y_delta);
+    diff(z_delta);
+
+}
+void diff(vector<int> &series){
+    for (unsigned int i = 0; i != series.size()-1; ++i)
+        series[i] = series[i+1] - series[i];
+    series.erase(series.end()-1);
 }
 
 
