@@ -85,6 +85,7 @@ void Sculpture::V_calc() {
     auto xyz = xyz_dis(this->boxes); //xyz为xyz三轴离散坐标
     Blocking blocking({get<0>(xyz), get<1>(xyz), get<2>(xyz)});
     blocking.show(cout);
+    vector<vector<int>> left_up_points = blocking(this->boxes);
 }
 
 
