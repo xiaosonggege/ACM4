@@ -84,7 +84,8 @@ void Sculpture::V_calc() {
     discretization xyz_dis;
     auto xyz = xyz_dis(this->boxes); //xyz为xyz三轴离散坐标
     Blocking blocking({get<0>(xyz), get<1>(xyz), get<2>(xyz)});
-    blocking.show(cout);
+//    blocking.show(cout);
+    //经过坐标离散化后用左上角坐标代替长方体后的所有坐标值
     vector<vector<int>> left_up_points = blocking(this->boxes);
     //将各轴离散坐标进行差分得到离散坐标各点的实际长度
     void diff(vector<int> &series);
@@ -92,6 +93,8 @@ void Sculpture::V_calc() {
     diff(x_delta);
     diff(y_delta);
     diff(z_delta);
+    //建立离散坐标张量
+
 
 }
 void diff(vector<int> &series){

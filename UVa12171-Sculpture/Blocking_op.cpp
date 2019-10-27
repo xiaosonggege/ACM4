@@ -36,13 +36,13 @@ vector<vector<int>> Blocking::operator()(const vector<vector<int>> &boxes) {
         statistic(left_up_points, zuobiao_temp[0], zuobiao_temp[1], zuobiao_temp[2]);
     }
     /////检查生成相对坐标点的正确性/////////
-    for (const auto &e : left_up_points){
-        cout << "(";
-        for (const auto &e2 : e){
-            cout << e2 << " ";
-        }
-        cout << ")" << endl;
-    }
+//    for (const auto &e : left_up_points){
+//        cout << "(";
+//        for (const auto &e2 : e){
+//            cout << e2 << " ";
+//        }
+//        cout << ")" << endl;
+//    }
     return left_up_points;
 }
 
