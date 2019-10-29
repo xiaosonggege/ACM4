@@ -18,7 +18,7 @@ vector<vector<int>> Blocking::operator()(const vector<vector<int>> &boxes) {
     vector<vector<int>> left_up_points;
     auto fun = [](unsigned int max_limit, vector<int> &per_axis, const vector<int> &dis_zuobiao)->void {
         for (unsigned i = 0; i != dis_zuobiao.size(); ++i)
-            if (dis_zuobiao[i] <= max_limit) per_axis.push_back(i);
+            if (dis_zuobiao[i] <= max_limit && i) per_axis.push_back(i);
     };
     for (const auto &e : boxes){
         //存储临时三轴相对坐标列表

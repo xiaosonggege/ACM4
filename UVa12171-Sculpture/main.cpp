@@ -10,13 +10,16 @@
 #include <initializer_list>
 #include "Blocking_op.h"
 #include "Sculpture.h"
+#include <utility>
 using namespace std;
 int main(int argc, char *argv[]){
     string path = "/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture/file1";
     shared_ptr<Sculpture> s = make_shared<Sculpture>(path);
-    s->show(cout);
-    s->print(cout);
+//    s->show(cout);
+//    s->print(cout);
     s->V_calc();
+
     return 0;
 }
+
 
