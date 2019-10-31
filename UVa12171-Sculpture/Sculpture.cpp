@@ -122,7 +122,7 @@ void Sculpture::V_calc() {
 //                cout << e3.first <<  " " << e3.second << endl;
     //计算总体积
     int Vtotal = x_delta.back() * y_delta.back() * z_delta.back();
-//    cout << Vtotal << endl;
+    cout << "总体积为:" << Vtotal << endl;
     void DFS(int x, int y, int z, const axis3_g &graph, int &v_water, vector<vector<int>> &after);
     int v_water = 0;
     vector<vector<int>> after;
@@ -146,7 +146,7 @@ void DFS(int x, int y, int z, const axis3_g &graph, int &v_water, vector<vector<
                 if ((i || j || k) && x+i >= 0 && x+i < graph.size()
                 && y+j >=0 && y+j < graph[0].size() && z+k >= 0 && z+k < graph[0][0].size()) {
                     vector<int> axis = {x+i, y+j, z+k};
-                    if (find(after.begin(), after.end(), axis) == after.end() && graph[axis[0]][axis[1]][axis[2]].second != '*') {
+                    if (find(after.begin(), after.end(), axis) == after.end() && graph[axis[0]][axis[1]][axis[2]].first != '*') {
                         after.push_back(axis);
                         v_water += graph[axis[0]][axis[1]][axis[2]].second;
                         DFS(axis[0], axis[1], axis[2], graph, v_water, after);
