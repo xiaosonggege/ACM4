@@ -146,7 +146,7 @@ void DFS(int x, int y, int z, const axis3_g &graph, int &v_water, vector<vector<
                 if ((i || j || k) && x+i >= 0 && x+i < graph.size()
                 && y+j >=0 && y+j < graph[0].size() && z+k >= 0 && z+k < graph[0][0].size()) {
                     vector<int> axis = {x+i, y+j, z+k};
-                    if (find(after.begin(), after.end(), axis) == after.end()) {
+                    if (find(after.begin(), after.end(), axis) == after.end() && graph[axis[0]][axis[1]][axis[2]].second != '*') {
                         after.push_back(axis);
                         v_water += graph[axis[0]][axis[1]][axis[2]].second;
                         DFS(axis[0], axis[1], axis[2], graph, v_water, after);
