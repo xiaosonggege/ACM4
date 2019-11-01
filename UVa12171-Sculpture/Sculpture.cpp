@@ -155,7 +155,7 @@ void DFS(int x, int y, int z, const axis3_g &graph, int &v_water, int &s, vector
                                 graph[axis[0]][axis[1]][axis[2]].second[2];
                         DFS(axis[0], axis[1], axis[2], graph, v_water, s, after);
                     }
-                    else if (abs(i) + abs(j) + abs(k) == 1){
+                    if (graph[axis[0]][axis[1]][axis[2]].first == '*' && abs(i) + abs(j) + abs(k) == 1){
                             auto ax = s_cum(i, j, k);
                             s += graph[axis[0]][axis[1]][axis[2]].second[get<0>(ax)] * graph[axis[0]][axis[1]][axis[2]].second[get<1>(ax)];
                     }

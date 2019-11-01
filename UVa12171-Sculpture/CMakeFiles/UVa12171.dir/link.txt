@@ -1,0 +1,1 @@
+/usr/bin/c++   -fopenmp    CMakeFiles/UVa12171.dir/main.cpp.o CMakeFiles/UVa12171.dir/Blocking_op.cpp.o CMakeFiles/UVa12171.dir/Sculpture.cpp.o  -o UVa12171 
