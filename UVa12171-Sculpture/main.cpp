@@ -18,7 +18,6 @@ int main(int argc, char *argv[]){
 //    s->show(cout);
 //    s->print(cout);
     s->V_calc();
-
     return 0;
 }
 

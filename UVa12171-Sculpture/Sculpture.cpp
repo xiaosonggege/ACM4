@@ -8,10 +8,12 @@
 #include <iomanip>
 #include <utility>
 #include <algorithm>
+#include <tuple>
+#include <cmath>
 using namespace std;
-using axis3_g = vector<vector<vector<pair<char, int>>>>;
-using axis2_g = vector<vector<pair<char, int>>>;
-using axis1_g = vector<pair<char, int>>;
+using axis3_g = vector<vector<vector<pair<char, vector<int>>>>>;
+using axis2_g = vector<vector<pair<char, vector<int>>>>;
+using axis1_g = vector<pair<char, vector<int>>>;
 int Sculpture::count = 0;
 Sculpture::Sculpture(const string &path): file_path(path) {
     ifstream ifstrm;
@@ -102,7 +104,7 @@ void Sculpture::V_calc() {
 //    using axis3_g = vector<vector<vector<pair<char, int>>>>;
 //    using axis2_g = vector<vector<pair<char, int>>>;
 //    using axis1_g = vector<pair<char, int>>;
-    axis1_g v1(z_delta.size()-1, make_pair(' ', 0));
+    axis1_g v1(z_delta.size()-1, make_pair(' ', vector<int>(3, 0)));
     axis2_g v2(y_delta.size()-1, v1);
     axis3_g graph(x_delta.size()-1, v2);
     bool judge(const vector<vector<int>> &v, const int &i, const int &j, const int &k);
@@ -110,8 +112,8 @@ void Sculpture::V_calc() {
         for (unsigned int axis2 = 0; axis2 != v2.size(); ++axis2){
             for (unsigned int axis3 = 0; axis3 != v1.size(); ++axis3){
                 if (judge(left_up_points, axis1, axis2, axis3))graph[axis1][axis2][axis3].first = '*';
-                graph[axis1][axis2][axis3].second = (x_delta[axis1+1]-x_delta[axis1])*(y_delta[axis2+1]-y_delta[axis2])
-                        *(z_delta[axis3+1]-z_delta[axis3]);
+                graph[axis1][axis2][axis3].second = vector<int>({x_delta[axis1+1]-x_delta[axis1],
+                        y_delta[axis2+1]-y_delta[axis2], z_delta[axis3+1]-z_delta[axis3]});
             }
         }
     }
@@ -123,12 +125,12 @@ void Sculpture::V_calc() {
     //计算总体积
     int Vtotal = x_delta.back() * y_delta.back() * z_delta.back();
     cout << "总体积为:" << Vtotal << endl;
-    void DFS(int x, int y, int z, const axis3_g &graph, int &v_water, vector<vector<int>> &after);
+    void DFS(int x, int y, int z, const axis3_g &graph, int &v_water, int &s, vector<vector<int>> &after);
     int v_water = 0;
     vector<vector<int>> after;
-    DFS(0, 0, 0, graph, v_water, after);
+    DFS(0, 0, 0, graph, v_water, this->S, after);
     this->V = Vtotal - v_water;
-    cout << this->V << endl;
+    cout << this->V << " " << this->S << endl;
 }
 void buchong(vector<int> &series){
     series.insert(series.begin(), series[0]-1);
@@ -139,7 +141,8 @@ bool judge(const vector<vector<int>> &v, const int &i, const int &j, const int &
         return 1;
     return 0;
 }
-void DFS(int x, int y, int z, const axis3_g &graph, int &v_water, vector<vector<int>> &after){
+void DFS(int x, int y, int z, const axis3_g &graph, int &v_water, int &s, vector<vector<int>> &after){
+    tuple<int, int> s_cum(int i, int j, int k);
     for (int i = -1; i != 2; ++i){
         for (int j = -1; j != 2; ++j){
             for (int k = -1; k != 2; ++k){
@@ -148,12 +151,21 @@ void DFS(int x, int y, int z, const axis3_g &graph, int &v_water, vector<vector<
                     vector<int> axis = {x+i, y+j, z+k};
                     if (find(after.begin(), after.end(), axis) == after.end() && graph[axis[0]][axis[1]][axis[2]].first != '*') {
                         after.push_back(axis);
-                        v_water += graph[axis[0]][axis[1]][axis[2]].second;
-                        DFS(axis[0], axis[1], axis[2], graph, v_water, after);
+                        v_water += graph[axis[0]][axis[1]][axis[2]].second[0]*graph[axis[0]][axis[1]][axis[2]].second[1]*
+                                graph[axis[0]][axis[1]][axis[2]].second[2];
+                        DFS(axis[0], axis[1], axis[2], graph, v_water, s, after);
+                    }
+                    else if (abs(i) + abs(j) + abs(k) == 1){
+                            auto ax = s_cum(i, j, k);
+                            s += graph[axis[0]][axis[1]][axis[2]].second[get<0>(ax)] * graph[axis[0]][axis[1]][axis[2]].second[get<1>(ax)];
                     }
                 }
             }
         }
     }
 }
-
+tuple<int, int> s_cum(int i, int j, int k){
+    if (abs(i) == 1) return make_tuple(1, 2);
+    else if (abs(j) == 1) return make_tuple(0, 2);
+    else return make_tuple(0, 1);
+}
