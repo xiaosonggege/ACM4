@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="ACM3_CLion"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="UVa12171">
+				<Option output="/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture/UVa12171" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture/Makefile&quot;  VERBOSE=1 UVa12171"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="UVa12171/fast">
+				<Option output="/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture/UVa12171" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture/Makefile&quot;  VERBOSE=1 UVa12171/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture/Blocking_op.cpp">
+			<Option target="UVa12171"/>
+		</Unit>
+		<Unit filename="/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture/Blocking_op.h">
+			<Option target="UVa12171"/>
+		</Unit>
+		<Unit filename="/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture/Discretization.h">
+			<Option target="UVa12171"/>
+		</Unit>
+		<Unit filename="/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture/Sculpture.cpp">
+			<Option target="UVa12171"/>
+		</Unit>
+		<Unit filename="/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture/Sculpture.h">
+			<Option target="UVa12171"/>
+		</Unit>
+		<Unit filename="/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture/main.cpp">
+			<Option target="UVa12171"/>
+		</Unit>
+		<Unit filename="/home/xiaosong/CLionProjects/ACM/UVa12171-Sculpture/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
