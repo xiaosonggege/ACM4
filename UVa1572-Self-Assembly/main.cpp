@@ -11,6 +11,10 @@
 #include <utility>
 #include <algorithm>
 #include <numeric>
+#include <iomanip>
+#include <iterator>
+#include "graph_building.h"
+#include "fuzhu.h"
 using namespace std;
 int main(int argc, char *argv[]){
     const string &path = "/home/xiaosong/CLionProjects/ACM/UVa1572-Self-Assembly/file";
@@ -18,15 +22,14 @@ int main(int argc, char *argv[]){
     ifstrm.open(path, ios::in);
     string temp;
     while (getline(ifstrm, temp)){
-        if (static_cast<int>(temp[0]) >= 0 && static_cast<int>(temp[0]) <= 9)
+        if (temp.size() <=2)
             continue;
         else{
-            //读入解析单行数据的对象进行统计并输出结果
-
+            Graph g(temp);
+            cout << endl;
         }
     }
     ifstrm.close();
-    vector<int> d(10, 1);
     return 0;
 }
 
