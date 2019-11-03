@@ -21,7 +21,7 @@ Graph::Graph(const string &datas): data(datas) {
             if (iter == str_temp2_.end()) throw string("转移对统计完成!");
         }
     }
-    catch (string &error) {cout << error;}
+    catch (string &error) {cout << error << endl;}
     //print
 //    for (auto const &e : this->data_)
 //        cout << e.first << "->" << e.second << endl;
@@ -29,6 +29,7 @@ Graph::Graph(const string &datas): data(datas) {
     sort(str_temp_.begin(), str_temp_.end());
     vector<string>::iterator iter_mid = unique(str_temp_.begin(), str_temp_.end());
     str_temp_.erase(iter_mid, str_temp_.end());
+    int len = str_temp_.size();
     int level = 0;
     while (str_temp_.size()){
         this->symbol_level[str_temp_.front()] = level;
@@ -39,8 +40,18 @@ Graph::Graph(const string &datas): data(datas) {
 //    for (auto const &e : this->symbol_level)
 //        cout << e.first << ": " << e.second << endl;
     //邻接表矩阵graph_matrix
-
-
+    this->graph_matrix = vector<vector<int>>(len, vector<int>(len, 0));
+//    cout << this->graph_matrix.size() << " " << this->graph_matrix[0].size() << endl;
+    for (auto const &e : this->data_){
+        unsigned int index1 = this->symbol_level[e.first], index2 = this->symbol_level[e.second];
+        this->graph_matrix[index1][index2] = 1;
+    }
+    //print
+    for (int i = 0; i != len; ++i){
+        for (int j = 0; j != len; ++j)
+            cout << this->graph_matrix[i][j];
+        cout << endl;
+    }
 }
 Graph::Graph(const Graph &g) {
     this->data = g.data;
