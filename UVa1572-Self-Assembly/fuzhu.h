@@ -11,6 +11,7 @@
 using namespace std;
 class Graph_friend{
 public:
-    int fun(const Graph &g);
+    int fun(Graph &g, vector<int> &stack, vector<string> &all_point);
+    int fun2(int pos, Graph &g, vector<int> &stack, vector<string> &all_point);
 };
 #endif //ACM3_CLION_FUZHU_H

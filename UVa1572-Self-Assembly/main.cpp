@@ -13,6 +13,7 @@
 #include <numeric>
 #include <iomanip>
 #include <iterator>
+#include <stdexcept>
 #include "graph_building.h"
 #include "fuzhu.h"
 using namespace std;
@@ -26,7 +27,7 @@ int main(int argc, char *argv[]){
             continue;
         else{
             Graph g(temp);
-            cout << endl;
+            cout << g.is_bounding() << endl;
         }
     }
     ifstrm.close();
