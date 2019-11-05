@@ -1,0 +1,1 @@
+/usr/bin/c++   -fopenmp    CMakeFiles/UVa1572.dir/main.cpp.o CMakeFiles/UVa1572.dir/graph_building.cpp.o CMakeFiles/UVa1572.dir/fuzhu.cpp.o  -o UVa1572 

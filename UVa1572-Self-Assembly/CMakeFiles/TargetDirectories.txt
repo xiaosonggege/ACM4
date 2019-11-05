@@ -1,0 +1,3 @@
+/home/xiaosong/CLionProjects/ACM/UVa1572-Self-Assembly/CMakeFiles/rebuild_cache.dir
+/home/xiaosong/CLionProjects/ACM/UVa1572-Self-Assembly/CMakeFiles/UVa1572.dir
+/home/xiaosong/CLionProjects/ACM/UVa1572-Self-Assembly/CMakeFiles/edit_cache.dir

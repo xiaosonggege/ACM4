@@ -18,6 +18,8 @@
 #include "fuzhu.h"
 using namespace std;
 int main(int argc, char *argv[]){
+    for (char **p = argv+1; p != argv+4; ++p) cout << *p << " ";
+    cout << endl;
     const string &path = "/home/xiaosong/CLionProjects/ACM/UVa1572-Self-Assembly/file";
     ifstream ifstrm;
     ifstrm.open(path, ios::in);
@@ -27,7 +29,10 @@ int main(int argc, char *argv[]){
             continue;
         else{
             Graph g(temp);
-            cout << g.is_bounding() << endl;
+            switch (g.is_bounding()){
+                case 1: cout << "bounded" << endl;
+                case 2: cout << "unbounded" << endl;
+            }
         }
     }
     ifstrm.close();
