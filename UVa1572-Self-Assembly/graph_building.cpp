@@ -15,8 +15,8 @@ Graph::Graph(const string &datas): data(datas) {
     vector<string> str_temp_;
     while (istr >> setw(2) >> str_temp) str_temp_.push_back(str_temp);
     //print
-    for (auto const &e : str_temp_)  cout << e << " ";
-    cout << endl;
+//    for (auto const &e : str_temp_)  cout << e << " ";
+//    cout << endl;
     //生成data_
     vector<string> str_temp2_(str_temp_); //复制用于生成成员datas_
     auto duiying = [](const string &s)->string {
@@ -45,8 +45,8 @@ Graph::Graph(const string &datas): data(datas) {
     sort(this->data_.begin(), this->data_.end());
     this->data_.erase(unique(this->data_.begin(), this->data_.end()), this->data_.end());
     //print
-    for (auto const &e : this->data_)
-        cout << e.first << "->" << e.second << endl;
+//    for (auto const &e : this->data_)
+//        cout << e.first << "->" << e.second << endl;
     //生成symbol_level
     sort(str_temp_.begin(), str_temp_.end());
     vector<string>::iterator iter_mid = unique(str_temp_.begin(), str_temp_.end());
@@ -61,8 +61,8 @@ Graph::Graph(const string &datas): data(datas) {
         str_temp_.erase(str_temp_.begin());
     }
     //print
-    for (auto const &e : this->symbol_level)
-        cout << e.first << ": " << e.second << endl;
+//    for (auto const &e : this->symbol_level)
+//        cout << e.first << ": " << e.second << endl;
     //邻接表矩阵graph_matrix
     this->graph_matrix = vector<vector<int>>(len, vector<int>(len, 0));
 //    cout << this->graph_matrix.size() << " " << this->graph_matrix[0].size() << endl;
@@ -71,11 +71,11 @@ Graph::Graph(const string &datas): data(datas) {
         this->graph_matrix[index1][index2] = 1;
     }
     //print
-    for (int i = 0; i != len; ++i){
-        for (int j = 0; j != len; ++j)
-            cout << this->graph_matrix[i][j];
-        cout << endl;
-    }
+//    for (int i = 0; i != len; ++i){
+//        for (int j = 0; j != len; ++j)
+//            cout << this->graph_matrix[i][j];
+//        cout << endl;
+//    }
 }
 Graph::Graph(const Graph &g) {
     this->data = g.data;

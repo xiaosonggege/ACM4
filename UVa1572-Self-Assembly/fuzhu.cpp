@@ -11,6 +11,7 @@ int Graph_friend::fun(Graph &g, vector<int> &stack, vector<string> &all_point) {
         int index_row = g.symbol_level[begin_point];
         //递归
         fun2(index_row, g, stack, all_point);
+        all_point.erase(all_point.begin());
     }
     return 0;
 }
@@ -23,7 +24,7 @@ int Graph_friend::fun2(int pos, Graph &g, vector<int> &stack, vector<string> &al
         stack.push_back(pos);
         vector<int> current_row = g.graph_matrix[pos];
         for (auto iter = current_row.begin(); iter != current_row.end(); ++iter){
-            if (*iter) fun2(*iter, g, stack, all_point);
+            if (*iter) fun2(iter-current_row.begin(), g, stack, all_point);
         }
         stack.erase(stack.end()-1);
     }
