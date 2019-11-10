@@ -11,18 +11,22 @@
 #include <sstream>
 #include <iterator>
 #include <memory>
+#include <utility>
 using namespace std;
 struct node{
-    int color_level; //颜色等级
-    int dis2end; //结点到终点结点的最短距离
+    int number;
+    vector<int> color_level; //颜色等级
     shared_ptr<node> next; //与该结点相连的一个结点
 };
 class graph{
+    friend shared_ptr<node> & duiwei(const int &number, graph &g, shared_ptr<node> &node_ptr);
+    friend bool find_node(const int &number1, const int &number2, graph &g, shared_ptr<node> &node_ptr);
 private:
     int point_num;
     int edge_num;
     string path;
     vector<node> linjiebiao;
+    vector<pair<int, int>> dis2end;
 public:
     graph() = default;
     graph(const string &, const int &points=0, const int &edges=0);
@@ -32,4 +36,6 @@ public:
     graph & operator=(graph &&);
 
 };
+shared_ptr<node> & duiwei(const int &number, graph &g, shared_ptr<node> &node_ptr);
+bool find_node(const int &number1, const int &number2, graph &g, shared_ptr<node> &node_ptr);
 #endif //ACM3_CLION_CLASS_FILE_H

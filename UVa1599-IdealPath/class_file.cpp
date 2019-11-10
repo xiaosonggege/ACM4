@@ -27,8 +27,18 @@ path(paths), point_num(points), edge_num(edges) {
     }
     //对linjiebiao进行赋值
     this->linjiebiao = vector<node>(this->point_num, node());
+    for (int num = 0; num != this->point_num; ++num) this->linjiebiao[num].number = num+1;
+    shared_ptr<node> node_move; //建立邻接表中横向移动指针
+    for (auto const &e : info){
+        this->linjiebiao[get<0>(e)].next = make_shared<node>(get<2>(e)); //结点距离最终结点最小值初始化为0，next指向nullptr
 
+    }
     ifstrm.close();
+    //初始化dis2end
+    int i = 1;
+    while (i != this->point_num+1){
+        this->dis2end.push_back(make_pair(i++, 0));
+    }
 }
 
 graph::graph(const graph &g) {
@@ -36,6 +46,7 @@ graph::graph(const graph &g) {
     this->edge_num = g.edge_num;
     this->path = g.path;
     this->linjiebiao = g.linjiebiao;
+    this->dis2end = g.dis2end;
 }
 
 graph::graph(graph &&g) {
@@ -43,8 +54,10 @@ graph::graph(graph &&g) {
     this->edge_num = g.edge_num;
     this->path = g.path;
     this->linjiebiao = g.linjiebiao;
+    this->dis2end = g.dis2end;
     g.path.clear();
     g.linjiebiao.clear();
+    g.dis2end.clear();
 }
 
 graph &graph::operator=(const graph &g) {
@@ -52,6 +65,7 @@ graph &graph::operator=(const graph &g) {
     this->edge_num = g.edge_num;
     this->path = g.path;
     this->linjiebiao = g.linjiebiao;
+    this->dis2end = g.dis2end;
     return *this;
 }
 
@@ -60,8 +74,10 @@ graph &graph::operator=(graph &&g) {
     this->edge_num = g.edge_num;
     this->path = g.path;
     this->linjiebiao = g.linjiebiao;
+    this->dis2end = g.dis2end;
     g.path.clear();
     g.linjiebiao.clear();
+    g.dis2end.clear();
     return *this;
 }
 
