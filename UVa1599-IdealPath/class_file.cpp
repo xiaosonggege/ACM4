@@ -32,9 +32,11 @@ path(paths), point_num(points), edge_num(edges) {
     for (auto const &e : info){
         //判断该结点对是否已经存在，如果存在则直接将颜色加入对应序列中
         *node_move = this->linjiebiao[get<0>(e)];
-        if (find_node(get<0>(e), get<1>(e), *this, node_move).first)
-        this->linjiebiao[get<0>(e)].next = make_shared<node>(get<1>(e));
-
+        if (find_node(get<0>(e), get<1>(e), *this, node_move)) node_move->color_level.push_back(get<2>(e));
+        else node_move->next = make_shared<node>(get<1>(e), vector<int>({get<2>(e)}));
+        *node_move = this->linjiebiao[get<1>(e)];
+        if (find_node(get<0>(e), get<1>(e), *this, node_move)) node_move->color_level.push_back(get<2>(e));
+        else node_move->next = make_shared<node>(get<1>(e), vector<int>({get<2>(e)}));
     }
     ifstrm.close();
     //初始化dis2end

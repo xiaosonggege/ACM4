@@ -10,5 +10,5 @@
 #include <utility>
 using namespace std;
 shared_ptr<node> & duiwei(const int &number, graph &g, shared_ptr<node> &node_ptr);
-pair<bool, shared_ptr<node> &> find_node(const int &number1, const int &number2, graph &g, shared_ptr<node> &node_ptr);
+bool find_node(const int &number1, const int &number2, graph &g, shared_ptr<node> &node_ptr);
 #endif //ACM3_CLION_FUNFILE_H

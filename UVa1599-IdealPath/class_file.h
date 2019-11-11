@@ -20,7 +20,7 @@ struct node{
 };
 class graph{
     friend shared_ptr<node> & duiwei(const int &number, graph &g, shared_ptr<node> &node_ptr);
-    friend pair<bool, shared_ptr<node> &> find_node(const int &number1, const int &number2, graph &g, shared_ptr<node> &node_ptr);
+    friend bool find_node(const int &number1, const int &number2, graph &g, shared_ptr<node> &node_ptr);
 private:
     int point_num;
     int edge_num;
@@ -37,5 +37,5 @@ public:
 
 };
 shared_ptr<node> & duiwei(const int &number, graph &g, shared_ptr<node> &node_ptr);
-pair<bool, shared_ptr<node> &> find_node(const int &number1, const int &number2, graph &g, shared_ptr<node> &node_ptr);
+bool find_node(const int &number1, const int &number2, graph &g, shared_ptr<node> &node_ptr);
 #endif //ACM3_CLION_CLASS_FILE_H

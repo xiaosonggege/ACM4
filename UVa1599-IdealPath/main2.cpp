@@ -5,14 +5,11 @@
 #include <string>
 #include <vector>
 using namespace std;
-int fun1(int a, int b){
-    return a*b;
-}
-int fun2(int a, int b, int (*funp)(int, int)){
-    return (*funp)(a, b);
-}
 int main(int argc, char *argv[]){
-    cout << fun2(2, 3, *fun1) << endl;
+    int b[] = {1, 2, 3};
+    vector<int> a(b, b+3);
+    vector<int> *p = &a;
+    cout << (*p)[2] << endl;
     return 0;
 }
 
