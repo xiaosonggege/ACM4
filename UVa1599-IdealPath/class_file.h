@@ -13,13 +13,18 @@
 #include <memory>
 #include <utility>
 using namespace std;
-struct node{
+class node{
+public:
     int number;
     vector<int> color_level; //颜色等级
-    shared_ptr<node> next; //与该结点相连的一个结点
+    shared_ptr<node> next = make_shared<node>(); //与该结点相连的一个结点
+    node() = default;
+    node(const int &numbers, const vector<int> &color_levels):
+    number(numbers), color_level(color_levels){}
+    ~node() = default;
 };
 class graph{
-    friend shared_ptr<node> & duiwei(const int &number, graph &g, shared_ptr<node> &node_ptr);
+//    friend shared_ptr<node> & duiwei(const int &number, graph &g, shared_ptr<node> &node_ptr);
     friend bool find_node(const int &number1, const int &number2, graph &g, shared_ptr<node> &node_ptr);
 private:
     int point_num;
@@ -36,6 +41,6 @@ public:
     graph & operator=(graph &&);
 
 };
-shared_ptr<node> & duiwei(const int &number, graph &g, shared_ptr<node> &node_ptr);
+//shared_ptr<node> & duiwei(const int &number, graph &g, shared_ptr<node> &node_ptr);
 bool find_node(const int &number1, const int &number2, graph &g, shared_ptr<node> &node_ptr);
 #endif //ACM3_CLION_CLASS_FILE_H

@@ -28,7 +28,7 @@ path(paths), point_num(points), edge_num(edges) {
     //对linjiebiao进行赋值
     this->linjiebiao = vector<node>(this->point_num, node());
     for (int num = 0; num != this->point_num; ++num) this->linjiebiao[num].number = num+1;
-    shared_ptr<node> node_move; //建立邻接表中横向移动指针
+    shared_ptr<node> node_move = make_shared<node>(); //建立邻接表中横向移动指针
     for (auto const &e : info){
         //判断该结点对是否已经存在，如果存在则直接将颜色加入对应序列中
         *node_move = this->linjiebiao[get<0>(e)];
