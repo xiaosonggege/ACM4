@@ -13,19 +13,24 @@
 #include <memory>
 #include <utility>
 using namespace std;
+class node;
+using node_ptr = node*;
 class node{
 public:
     int number;
     vector<int> color_level; //颜色等级
-    shared_ptr<node> next = make_shared<node>(); //与该结点相连的一个结点
+    node_ptr next = nullptr; //与该结点相连的一个结点
     node() = default;
     node(const int &numbers, const vector<int> &color_levels):
-    number(numbers), color_level(color_levels){}
+            number(numbers), color_level(color_levels){}
+    inline int Insert(node_ptr &node_p){
+        this->next = node_p;
+        return 0;
+    }
     ~node() = default;
 };
 class graph{
-//    friend shared_ptr<node> & duiwei(const int &number, graph &g, shared_ptr<node> &node_ptr);
-    friend bool find_node(const int &number1, const int &number2, graph &g, shared_ptr<node> &node_ptr);
+    friend bool find_node(const int &number1, const int &number2, graph &g, node_ptr &node_p);
 private:
     int point_num;
     int edge_num;
@@ -42,5 +47,5 @@ public:
 
 };
 //shared_ptr<node> & duiwei(const int &number, graph &g, shared_ptr<node> &node_ptr);
-bool find_node(const int &number1, const int &number2, graph &g, shared_ptr<node> &node_ptr);
+bool find_node(const int &number1, const int &number2, graph &g, node_ptr &node_p);
 #endif //ACM3_CLION_CLASS_FILE_H

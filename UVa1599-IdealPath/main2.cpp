@@ -6,17 +6,21 @@
 #include <vector>
 #include <memory>
 #include <utility>
+#include <fstream>
+#include <sstream>
+#include <iterator>
 using namespace std;
-int fun(shared_ptr<int> p){
+shared_ptr<int> fun(shared_ptr<int> p){
+    shared_ptr<int> p33 = p;
     cout << p.use_count() << endl;
-    return 0;
+    return p;
 }
 int main(int argc, char *argv[]){
-    shared_ptr<int> p = make_shared<int>();
-    shared_ptr<int> &p2 = p;
-    *p2 = 1;
-    fun(p);
-    cout << p.use_count() << endl;
+    string s = "1 2 3 4";
+    istringstream istr(s);
+    int a, b, c, d;
+    istr >> a >> b >> c >> d;
+    cout << a << " " << b << " " << d << endl;
     return 0;
 }
 
