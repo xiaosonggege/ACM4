@@ -44,7 +44,7 @@ public:
     graph(graph &&);
     graph & operator=(const graph &);
     graph & operator=(graph &&);
-
+    ~graph();
 };
 //shared_ptr<node> & duiwei(const int &number, graph &g, shared_ptr<node> &node_ptr);
 bool find_node(const int &number1, const int &number2, graph &g, node_ptr &node_p);
