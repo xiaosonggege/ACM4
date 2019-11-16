@@ -16,11 +16,15 @@ shared_ptr<int> fun(shared_ptr<int> p){
     return p;
 }
 int main(int argc, char *argv[]){
-    string s = "1 2 3 4";
-    istringstream istr(s);
-    int a, b, c, d;
-    istr >> a >> b >> c >> d;
-    cout << a << " " << b << " " << d << endl;
+    int *p = new int(5), j = 3;
+    int *d = p;
+    delete p;
+    p = nullptr;
+//    delete p;
+//    free(p);
+    int e = *d;
+    cout << e << endl;
+    cout << *p << endl;
     return 0;
 }
 

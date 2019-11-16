@@ -4,6 +4,7 @@
 
 #include "class_file.h"
 #include <tuple>
+#include <algorithm>
 using namespace std;
 graph::graph(const string &paths, const int &points, const int &edges):
 path(paths), point_num(points), edge_num(edges) {
@@ -91,12 +92,14 @@ graph &graph::operator=(graph &&g) {
 graph::~graph() {
     //释放邻接表所占用的动态空间
     for (auto &e : this->linjiebiao){
-        node_ptr move = &e;
+        node_ptr move = e.next;
         while (move){
             node_ptr move_pre = move;
             move = move->next;
-            shared_ptr<node> free_ptr(move);
+            shared_ptr<node> free_ptr(move_pre);
         }
     }
+    for_each(this->linjiebiao.begin(), this->linjiebiao.end(), [](node &n){n.next = nullptr;});
+    this->linjiebiao.clear();
 }
 
