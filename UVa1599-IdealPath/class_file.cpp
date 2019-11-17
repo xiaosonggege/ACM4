@@ -47,6 +47,9 @@ path(paths), point_num(points), edge_num(edges) {
     while (i != this->point_num+1){
         this->dis2end.push_back(make_pair(i++, 0));
     }
+    graph::calc_dis2end();
+    for (auto const &e : this->dis2end)
+        cout << e.first << " " << e.second << endl;
 }
 
 graph::graph(const graph &g) {
@@ -99,7 +102,30 @@ graph::~graph() {
             shared_ptr<node> free_ptr(move_pre);
         }
     }
-    for_each(this->linjiebiao.begin(), this->linjiebiao.end(), [](node &n){n.next = nullptr;});
+    for_each(this->linjiebiao.begin(), this->linjiebiao.end(), [](node &n)->void {n.next = nullptr;});
     this->linjiebiao.clear();
+}
+
+void graph::calc_dis2end() {
+    //建立移动指针
+    node_ptr node_p = &this->linjiebiao.back();
+    vector<int> *stack = new vector<int>, *stack_2 = new vector<int>; //存储堆栈
+    stack->push_back(node_p->number);
+    //BFS部分
+    //遍历当前node_p指向结点为表头的整个链表，压入栈
+    while (!stack->empty()){
+        while (node_p){
+            if (find(stack->cbegin(), stack->cend(), node_p->number) == stack->cend() &&
+            find(stack_2->cbegin(), stack_2->cend(), node_p->number) == stack_2->cend()){ //结点中的数值不在栈stack中,也不在stack_2中
+                stack->push_back(node_p->number);
+                this->dis2end[node_p->number-1].second = this->dis2end[stack->front()-1].second + 1;
+            }
+            node_p = node_p->next;
+        }
+        stack_2->push_back(*stack->begin());
+        stack->erase(stack->begin()); //栈底编号结点已经被遍历完
+        node_p = &this->linjiebiao[stack->front()];
+    }
+    shared_ptr<vector<int>> ptr_stack(stack), ptr_stack_2(stack_2);
 }
 

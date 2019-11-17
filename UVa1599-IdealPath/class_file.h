@@ -45,6 +45,8 @@ public:
     graph & operator=(const graph &);
     graph & operator=(graph &&);
     ~graph();
+protected:
+    void calc_dis2end();
 };
 //shared_ptr<node> & duiwei(const int &number, graph &g, shared_ptr<node> &node_ptr);
 bool find_node(const int &number1, const int &number2, graph &g, node_ptr &node_p);
