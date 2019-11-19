@@ -13,6 +13,6 @@ using namespace std;
 int main(int argc, char *argv[]){
     const string &path = "/home/xiaosong/CLionProjects/ACM/UVa1599-IdealPath/file";
     shared_ptr<graph> g_ptr = make_shared<graph>(path);
-    
+    g_ptr->BFS_min_dict(cout);
     return 0;
 }

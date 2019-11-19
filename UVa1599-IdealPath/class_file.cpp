@@ -52,8 +52,8 @@ path(paths), point_num(points), edge_num(edges) {
         this->dis2end.push_back(make_pair(i++, 0));
     }
     graph::calc_dis2end();
-    for (auto const &e : this->dis2end)
-        cout << e.first << " " << e.second << endl;
+//    for (auto const &e : this->dis2end)
+//        cout << e.first << " " << e.second << endl;
 }
 
 graph::graph(const graph &g) {
@@ -133,5 +133,33 @@ void graph::calc_dis2end() {
     shared_ptr<vector<int>> ptr_stack(stack), ptr_stack_2(stack_2);
     stack = nullptr;
     stack_2 = nullptr;
+}
+
+ostream &graph::BFS_min_dict(ostream &os) &{
+    //建立存储结点的队列
+    vector<tuple<int, vector<int>>> stack;
+    //存入起始结点
+    stack.push_back(make_tuple(1, vector<int>({})));
+    int num = 1, dis = 100, color = 100;
+    while (num != 4){
+        node_ptr node_p = &this->linjiebiao[num-1];
+        while (node_p){
+            if (node_p->number == 4) {num = 4; break;};
+            decltype(color) color_lev = *min_element(node_p->color_level.begin(), node_p->color_level.end());
+            if (this->dis2end[node_p->number-1].second <= dis && color_lev <= color) {
+                dis = this->dis2end[node_p->number-1].second;
+                color = color_lev;
+                get<1>(*stack.begin()).push_back(num);
+                stack.push_back(make_tuple(node_p->number, get<1>(*stack.begin())));
+            }
+            stack.erase(stack.begin());
+            node_p = node_p->next;
+        }
+    }
+    decltype(num) num_node = get<1>(stack.back()).size();
+    os << num_node << endl;
+    for (auto const &e : get<1>(stack.back())) os << e << " ";
+    os << endl;
+    return os;
 }
 

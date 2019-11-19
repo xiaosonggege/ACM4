@@ -44,6 +44,7 @@ public:
     graph(graph &&);
     graph & operator=(const graph &);
     graph & operator=(graph &&);
+    ostream & BFS_min_dict(ostream &) &;
     ~graph();
 protected:
     void calc_dis2end();
