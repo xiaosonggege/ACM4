@@ -27,6 +27,13 @@ path(paths), point_num(points), edge_num(edges) {
                 info.push_back(make_tuple(temp_p1, temp_p2, color));
             }
         }
+        //筛选自环，查找并删除
+        decltype(info)::iterator iter_info = info.begin();
+        while (iter_info != info.end()){
+            if (get<0>(*iter_info) == get<1>(*iter_info)) iter_info = info.erase(iter_info);
+            else ++iter_info;
+        }
+        //
 //    for (auto const &e : info){
 //        cout << get<0>(e) << " " << get<1>(e) << " " << get<2>(e) << endl;
 //    }
