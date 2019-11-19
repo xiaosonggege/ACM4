@@ -138,23 +138,43 @@ void graph::calc_dis2end() {
 ostream &graph::BFS_min_dict(ostream &os) &{
     //建立存储结点的队列
     vector<tuple<int, vector<int>>> stack;
+    vector<int> stack2;
     //存入起始结点
     stack.push_back(make_tuple(1, vector<int>({})));
     int num = 1, dis = 100, color = 100;
-    while (num != 4){
-        node_ptr node_p = &this->linjiebiao[num-1];
+    //统计终点所连接的结点
+    int count = 0;
+    for (node_ptr p = this->linjiebiao[4-1].next; p; p=p->next) ++count;
+    //
+    node_ptr node_p = &this->linjiebiao[num-1];
+    while (count){
+        node_p = node_p->next;
         while (node_p){
-            if (node_p->number == 4) {num = 4; break;};
+            auto judge = [&](tuple<int, vector<int>> tup)->bool {return get<0>(tup) == node_p->number;};
+            if (node_p->number != 4){
+                if (find(stack2.cbegin(), stack2.cend(), node_p->number) != stack2.cend() ||
+                    find_if (stack.begin(), stack.end(), judge) != stack.end()) {
+                    node_p = node_p->next;
+                    continue;
+                }
+            }
+            num = node_p->number;
+
             decltype(color) color_lev = *min_element(node_p->color_level.begin(), node_p->color_level.end());
             if (this->dis2end[node_p->number-1].second <= dis && color_lev <= color) {
                 dis = this->dis2end[node_p->number-1].second;
                 color = color_lev;
-                get<1>(*stack.begin()).push_back(num);
-                stack.push_back(make_tuple(node_p->number, get<1>(*stack.begin())));
+                auto v = get<1>(*stack.begin());
+                v.push_back(get<0>(*stack.begin()));
+                stack.push_back(make_tuple(node_p->number, v));
             }
-            stack.erase(stack.begin());
+            if (node_p->number == 4) {--count; break;}
             node_p = node_p->next;
         }
+        stack2.push_back(get<0>(*stack.begin()));
+        stack.erase(stack.begin());
+        node_p = &this->linjiebiao[get<0>(*stack.begin())-1];
+        dis = 100, color = 100;
     }
     decltype(num) num_node = get<1>(stack.back()).size();
     os << num_node << endl;

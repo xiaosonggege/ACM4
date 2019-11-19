@@ -15,10 +15,9 @@
 #include <tuple>
 using namespace std;
 int main(int argc, char *argv[]){
-    auto a = make_tuple(1, vector<int>({1, 2}));
-    get<0>(a) = 2;
-    get<1>(a).push_back(3);
-    cout << get<0>(a) << " " << get<1>(a)[0] << get<1>(a)[1] << get<1>(a)[2] << endl;
+    vector<int> v = {1, 2, 3, 4};
+    int a = *min_element(v.begin(), v.end());
+    cout << a << endl;
     return 0;
 }
 
