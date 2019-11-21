@@ -85,6 +85,12 @@ int main(int argc, char *argv[]){
     printf("输入为:%s\n", input2);
     BiTree root1 = (BiTree)malloc(sizeof(BiTNode));
     CreateBiTree(root1, input2, sizeof(input2)/sizeof(char)-1);
+    printf("先序遍历结果:\n");
+    PreOrderTraverse(root1, visit);
+    printf("\n");
+    printf("中序序遍历结果:\n");
+    InOrderTraverse(root1, visit);
+    printf("\n");
     ///////////二叉搜索树插入算法////////
     printf("插入结点值为:%c时的中序遍历结果为:\n", 'B');
     BiTNodeInsert(root1, 'B');
@@ -100,6 +106,7 @@ int main(int argc, char *argv[]){
     BiTNodeInsert(root1, 'P');
     InOrderTraverse(root1, visit);
     printf("\n");
+
     ////////////二叉搜索树查找算法////////
     BiTree result;
     printf("查找元素为:%c时的查找结果为:\n", 'O');
