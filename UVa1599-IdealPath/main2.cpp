@@ -38,11 +38,8 @@ QueueNode_p dequeue(Queue_p pq){
     pTemp = pq->front->next;
     if(pTemp->next == NULL){
         pq->rear = pq->front;
-    }else{
-        pq->front->next = pTemp->next;
     }
-//    QueueNode_p x = pTemp;
-//    free(pTemp);
+    pq->front->next = pTemp->next;
     return pTemp;
 }
 ////////
@@ -53,31 +50,77 @@ int main(int argc, char *argv[]){
     void CreateBiTree(BiTree &T, char string[], int size); //根据要求次序输入二叉树中结点值
     void PreOrderTraverse(BiTree &T, void (*visit)(char e)); //先序遍历二叉树
     void InOrderTraverse(BiTree &T, void (*visit)(char e)); //中序遍历二叉树
-    void InOrderTraverse_no_cur_no_stack(BiTree &T, void (*visit)(char e)); //中序非递归无堆栈遍历二叉树
+    void InOrderTraverse_no_cur_no_stack(BiTree T, void (*visit)(char e)); //中序非递归无堆栈遍历二叉树
     void PostOrderTraverse(BiTree &T, void (*visit)(char e)); //后序遍历二叉树
     void LevelOrderTraverse(BiTree &T, void (*visit)(char e)); //层序遍历二叉树
     void DestroyBiTree(BiTree &T); //销毁二叉树
-    ///////////////////////////////////
+    void BiTNodeFind(BiTree &T, char value, BiTree &result); //二叉搜索树的查找算法
+    void BiTNodeInsert(BiTree &T, char value); //二叉搜索树的插入算法
+    ///////////////////////////////////实验1-2//////////////////////////////////
+    printf("/////////////////////实验1-2/////////////////////\n");
     char input[] = "ABC#D#E";
-//    printf("%lu\n", sizeof(input)/sizeof(char));
+    printf("输入为:%s\n", input);
     BiTree root = (BiTree)malloc(sizeof(BiTNode));
     CreateBiTree(root, input, sizeof(input)/sizeof(char)-1);
-    printf("先序遍历!");
+    printf("先序遍历! ");
     PreOrderTraverse(root, visit);
     printf("\n");
-    printf("中序遍历!");
+    printf("中序遍历! ");
     InOrderTraverse(root, visit);
     printf("\n");
-    printf("后序遍历!");
+    printf("后序遍历! ");
     PostOrderTraverse(root, visit);
     printf("\n");
-    printf("层序遍历!");
+    printf("层序遍历! ");
     LevelOrderTraverse(root, visit);
+    printf("\n");
+    printf("非递归且不用栈中序遍历二叉树! ");
+    InOrderTraverse_no_cur_no_stack(root, visit);
+    printf("\n");
     DestroyBiTree(root);
+    printf("\n\n");
+/////////////////////////实验3///////////////////////////////
+    printf("/////////////////////实验3/////////////////////\n");
+    char input2[] = "IDOAELZ";
+    printf("输入为:%s\n", input2);
+    BiTree root1 = (BiTree)malloc(sizeof(BiTNode));
+    CreateBiTree(root1, input2, sizeof(input2)/sizeof(char)-1);
+    ///////////二叉搜索树插入算法////////
+    printf("插入结点值为:%c时的中序遍历结果为:\n", 'B');
+    BiTNodeInsert(root1, 'B');
+    InOrderTraverse(root1, visit);
+    printf("\n");
+
+    printf("插入结点值为:%c时的中序遍历结果为:\n", 'F');
+    BiTNodeInsert(root1, 'F');
+    InOrderTraverse(root1, visit);
+    printf("\n");
+
+    printf("插入结点值为:%c时的中序遍历结果为:\n", 'P');
+    BiTNodeInsert(root1, 'P');
+    InOrderTraverse(root1, visit);
+    printf("\n");
+    ////////////二叉搜索树查找算法////////
+    BiTree result;
+    printf("查找元素为:%c时的查找结果为:\n", 'O');
+    BiTNodeFind(root1, 'O', result);
+    if (result) printf("%c\n", result->data);
+    else printf("结点不存在!\n");
+
+    printf("查找元素为:%c时的查找结果为:\n", 'A');
+    BiTNodeFind(root1, 'A', result);
+    if (result) printf("%c\n", result->data);
+    else printf("结点不存在!\n");
+
+    printf("查找元素为:%c时的查找结果为:\n", 'R');
+    BiTNodeFind(root1, 'R', result);
+    if (result) printf("%c\n", result->data);
+    else printf("结点不存在!\n");
+    DestroyBiTree(root1);
     return 0;
 }
 void visit(char e){
-    printf("%c\t", e);
+    printf("%c ", e);
 }
 BiTree & InitBiTree(BiTree &T){
     if (!(T = (BiTNode *)malloc(sizeof(BiTNode)))) exit(EOVERFLOW);
@@ -133,7 +176,7 @@ void CreateBiTree(BiTree &T, char string[], int size){
             ++pos;
         }
         else break;
-        if (pos != size && *(string + pos) != '#'){
+        if (pos != size){
             if (*(string + pos) != '#') {
                 BiTree binode_rchild = (BiTree)malloc(sizeof(BiTNode)); //开辟新的二叉树右孩子结点
                 binode_rchild->data = *(string + pos);
@@ -150,5 +193,61 @@ void DestroyBiTree(BiTree &T){
         DestroyBiTree(T->lchild);
         DestroyBiTree(T->rchild);
         free(T);
+    }
+}
+void InOrderTraverse_no_cur_no_stack(BiTree T, void (*visit)(char e)){ //本函数不用引用根结点，而是直接值传递
+    while (T){
+        if (T->lchild == NULL) {
+            visit(T->data);
+            T = T->rchild;
+        }
+        else{
+            BiTree pre = T; //记录当前父结点位置
+            T = T->lchild;
+            pre->lchild = NULL;
+            BiTree move = T;
+            while (move->rchild != NULL) move = move->rchild;
+            move->rchild = pre;
+        }
+    }
+}
+void BiTNodeFind(BiTree &T, char value, BiTree &result){
+    if (!T) result = NULL; //如果树为空
+    else {
+        if (value == T->data) {
+            result = T;
+        }
+        else if (value < T->data) BiTNodeFind(T->lchild, value, result);
+        else BiTNodeFind(T->rchild, value, result);
+    }
+}
+void BiTNodeInsert(BiTree &T, char value){
+    BiTree Ts = T;
+    BiTree node = (BiTree)malloc(sizeof(BiTNode));
+    node->data = value;
+    if (!node) exit(EOVERFLOW);
+
+    if (!Ts) Ts->data = value;
+    else {
+        BiTree follow;
+        int flag = 0;
+        while (!flag){
+            follow = Ts;
+            if (value < Ts->data) {
+                if (Ts->lchild) Ts = Ts->lchild;
+                else {
+                    Ts->lchild = node;
+                    flag = 1;
+                }
+            }
+
+            else {
+                if (Ts->rchild) Ts = Ts->rchild;
+                else {
+                    Ts->rchild = node;
+                    flag = 1;
+                }
+            }
+        }
     }
 }
