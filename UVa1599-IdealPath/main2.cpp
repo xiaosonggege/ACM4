@@ -57,7 +57,7 @@ int main(int argc, char *argv[]){
     void BiTNodeFind(BiTree &T, char value, BiTree &result); //二叉搜索树的查找算法
     void BiTNodeInsert(BiTree &T, char value); //二叉搜索树的插入算法
     ///////////////////////////////////实验1-2//////////////////////////////////
-    printf("/////////////////////实验1-2/////////////////////\n");
+    printf("/////////////////////实验1/////////////////////\n");
     char input[] = "ABC#D#E";
     printf("输入为:%s\n", input);
     BiTree root = (BiTree)malloc(sizeof(BiTNode));
@@ -74,6 +74,7 @@ int main(int argc, char *argv[]){
     printf("层序遍历! ");
     LevelOrderTraverse(root, visit);
     printf("\n");
+    printf("/////////////////////实验2/////////////////////\n");
     printf("非递归且不用栈中序遍历二叉树! ");
     InOrderTraverse_no_cur_no_stack(root, visit);
     printf("\n");
