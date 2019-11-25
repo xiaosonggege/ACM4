@@ -28,11 +28,24 @@ paintball::paintball(const string &paths): path(paths){
         }
     }
     catch (const string &error){cerr << error;}
+    ifstrm.close();
     sort(this->x_real_value.begin(), this->x_real_value.end());
+    vector<double>::iterator end_ = unique(this->x_real_value.begin(), this->x_real_value.end());
+    this->x_real_value.erase(end_, this->x_real_value.end());
     sort(this->y_real_value.begin(), this->y_real_value.end());
+    vector<double>::iterator end_2 = unique(y_real_value.begin(), y_real_value.end());
+    this->y_real_value.erase(end_2, y_real_value.end());
     cout << "障碍物的坐标及范围为:" << endl;
     for (auto const &e : this->ball) cout << "(" << get<0>(e) << ", " << get<1>(e) << ")  " << "r= " << get<2>(e) << endl;
-    ifstrm.close();
+    //构造离散化坐标图
+    this->map = vector<vector<double>>(x_real_value.size(), vector<double>(y_real_value.size()));
+    for (unsigned int x = 0; x != this->x_real_value.size(); ++x){
+        for (unsigned int y = 0; y != this->y_real_value.size(); ++y){
+            pair<bool, double> tup = find_fun(*this, x_real_value[x], y_real_value[y]);
+            if (tup.first) this->map[x][y] = tup.second;
+            else this->map[x][y] = 0;
+        }
+    }
 }
 paintball::paintball(const paintball &p) {
     this->ball = p.ball;
@@ -93,4 +106,10 @@ ostream & paintball::operator()(ostream &os) {
     os << "起点坐标为: (" << this->start.first << ", " << start.second << ")" << endl;
     os << "终点坐标为: (" << this->end.first << ", " << end.second << ")" << endl;
     return os;
+}
+pair<bool, double> find_fun(const paintball &p, const unsigned int &x, const unsigned int &y){
+    for (auto const &e : p.ball){
+        if (get<0>(e) == x && get<1>(e) == y) { return make_pair(1, get<2>(e)); break; }
+    }
+    return make_pair(0, 0);
 }

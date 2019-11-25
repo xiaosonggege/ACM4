@@ -11,6 +11,7 @@
 #include <utility>
 using namespace std;
 class paintball{
+    friend pair<bool, double> find_fun(const paintball &, const unsigned int &, const unsigned int &);
 private:
     const string path = " "; //文件路径
     vector<tuple<double, double, double>> ball; //障碍物坐标和半径值序列
@@ -20,7 +21,7 @@ private:
     vector<double> x_real_value; //离散化后的横坐标真实值
     vector<double> y_real_value; //离散化后的纵坐标真实值
     //离散化后的地图
-    vector<vector<double>> map = vector<vector<double>>(x_real_value.size(), vector<double>(y_real_value.size()));
+    vector<vector<double>> map;
 public:
     paintball() = default;
     virtual ~paintball(){};
@@ -31,4 +32,5 @@ public:
     paintball & operator=(paintball &&);
     ostream & operator()(ostream &); //输出类中所有数据信息
 };
+pair<bool, double> find_fun(const paintball &, const unsigned int &, const unsigned int &);
 #endif //ACM3_CLION_PAINTBALL_H
