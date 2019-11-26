@@ -1,0 +1,1 @@
+/usr/bin/c++   -fopenmp    CMakeFiles/UVa11853.dir/main.cpp.o CMakeFiles/UVa11853.dir/Paintball.cpp.o  -o UVa11853 

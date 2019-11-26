@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/xiaosong/CLionProjects/ACM/UVa11853-Paintball/Paintball.cpp
+Paintball.h
+/home/xiaosong/CLionProjects/ACM/UVa11853-Paintball/Paintball.h
+fstream
+-
+sstream
+-
+algorithm
+-
+iterator
+-
+cmath
+-
+
+/home/xiaosong/CLionProjects/ACM/UVa11853-Paintball/Paintball.h
+vector
+-
+string
+-
+iostream
+-
+tuple
+-
+utility
+-
+
+/home/xiaosong/CLionProjects/ACM/UVa11853-Paintball/main.cpp
+iostream
+-
+string
+-
+vector
+-
+Paintball.h
+/home/xiaosong/CLionProjects/ACM/UVa11853-Paintball/Paintball.h
+memory
+-
+
