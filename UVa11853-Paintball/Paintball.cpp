@@ -6,6 +6,7 @@
 #include <sstream>
 #include <algorithm>
 #include <iterator>
+#include <cmath>
 using namespace std;
 paintball::paintball(const string &paths): path(paths){
     ifstream ifstrm;
@@ -100,7 +101,7 @@ paintball& paintball::operator=(paintball &&p) {
     return *this;
 }
 ostream & paintball::operator()(ostream &os) {
-    string an1 = "不存在通路", an2 = "存在通路";
+    string an1 = "存在通路", an2 = "不存在通路";
     if (this->is_bounded) os << an1 << endl;
     else os << an2 << endl;
     os << "起点坐标为: (" << this->start.first << ", " << start.second << ")" << endl;
@@ -112,4 +113,65 @@ pair<bool, double> find_fun(const paintball &p, const unsigned int &x, const uns
         if (get<0>(e) == x && get<1>(e) == y) { return make_pair(1, get<2>(e)); break; }
     }
     return make_pair(0, 0);
+}
+void paintball::DFS() {
+    auto compare = [](const double &r)->bool{return r > 0;};
+    vector<double> first_row = this->map[0];
+    vector<double>::const_iterator iter_pos = find_if(first_row.cbegin(), first_row.cend(), compare);
+    unsigned int first_row_nonezero = iter_pos - first_row.cbegin(); //首行非零元素位置
+    //记录已遍历完成的位置坐标
+    vector<pair<int, int>> record;
+    DFS_s(*this, 0, first_row_nonezero, record, this->map.size());
+}
+void DFS_s(paintball &p, const int &x, const int &y, vector<pair<int, int>> &record, int max_depth){
+    if (!p.is_bounded){
+        for (int fx = -1; fx != 2 && p.is_bounded != 1; ++fx){
+            for (int fy = -1; fy != 2 && p.is_bounded != 1; ++fy){
+                if (x+fx >=0 && x+fx < p.map.size() && y+fy >=0 && y+fy < p.map[0].size()){
+                    if (find(record.cbegin(), record.cend(), make_pair(x+fx, y+fy)) == record.cend()) {
+                        if (x+fx == max_depth-1) p.is_bounded = 1;
+                        record.push_back(make_pair(x+fx, y+fy));
+                        DFS_s(p, x+fx, y+fy, record, max_depth);
+                    }
+                }
+            }
+        }
+    }
+}
+void paintball::startandend_axis() {
+    decltype(this->ball) ball_series_left, ball_series_right;
+    //筛选
+    for (auto const &e : this->ball){
+        if (get<2>(e) >= abs(get<0>(e) - 0)) ball_series_left.push_back(e);
+        if (get<2>(e) >= abs(1000 - get<0>(e))) ball_series_right.push_back(e);
+    }
+    vector<double> r_left, r_right;
+    int flag = 0;
+    for (auto const &e : ball_series_left) {
+        if (get<1>(e)+get<2>(e) < 1000) {
+            double y_up = get<1>(e) + sqrt(pow(get<2>(e), 2)-pow(get<0>(e), 2));
+            r_left.push_back(y_up);
+            ++flag;
+        }
+        else if (get<1>(e)-get<2>(e) > 0){
+            double y_down = get<1>(e) - sqrt(pow(get<2>(e), 2)-pow(get<0>(e), 2));
+            r_left.push_back(y_down);
+        }
+    }
+    if (flag == ball_series_left.size()) r_left.push_back(1000);
+    this->start = make_pair(0, *max_element(r_left.cbegin(), r_left.cend()));
+    flag = 0;
+    for (auto const &e : ball_series_right) {
+        if (get<1>(e)+get<2>(e) < 1000) {
+            double y_up = get<1>(e) + sqrt(pow(get<2>(e), 2)-pow(1000 - get<0>(e), 2));
+            r_right.push_back(y_up);
+            ++flag;
+        }
+        else if (get<1>(e)-get<2>(e) > 0){
+            double y_down = get<1>(e) - sqrt(pow(get<2>(e), 2)-pow(1000 - get<0>(e), 2));
+            r_right.push_back(y_down);
+        }
+    }
+    if (flag == ball_series_right.size()) r_right.push_back(1000);
+    this->end = make_pair(1000, *max_element(r_right.cbegin(), r_right.cend()));
 }
