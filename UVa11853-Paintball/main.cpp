@@ -8,6 +8,7 @@
 #include <memory>
 using namespace std;
 int main(int argc, char *argv[]){
+    cout << argv[1] << endl;
     const string &path = "/home/xiaosong/CLionProjects/ACM/UVa11853-Paintball/file";
     paintball p1(path);
     p1.DFS();
