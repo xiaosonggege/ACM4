@@ -9,6 +9,7 @@
 #include "Parentheses.h"
 using namespace std;
 int main(int argc, char *argv[]){
+    cout << argv[1] << endl;
     const string path = "/Users/songyunlong/CLionProjects/ACM4/UVa673-ParenthesesBalance/file";
     ifstream ifstrm;
     ifstrm.open(path, ios::in);
