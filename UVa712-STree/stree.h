@@ -13,6 +13,7 @@ struct BiTreeNode{
     BiTreeNode *rchild = nullptr;
 };
 class patrolli{
+    friend void destroy(BiTreeNode *node);
 private:
     int tree_deep; //树的深度
     string leaves_value; //叶子结点值拼成的字符串
@@ -28,7 +29,7 @@ public:
     patrolli & operator=(const patrolli &);
     patrolli & operator=(patrolli &&);
     ostream & operator()(ostream &) const; //打印对象中相关信息
-    void buildtree(); //建树
     void go(); //译码
 };
+void destroy(BiTreeNode *node);
 #endif //ACM3_CLION_STREE_H

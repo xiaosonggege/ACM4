@@ -4,9 +4,11 @@
 #include "stree.h"
 #include <cmath>
 #include <sstream>
+#include <memory>
 using namespace std;
 patrolli::patrolli(const int &tree_deeps, const string &leaves_values, const vector<string> &roadlines):
 tree_deep(tree_deeps), leaves_value(leaves_values), roadline(roadlines) {
+    decltype(this->leaves_value) leaves_v(leaves_values.begin(), leaves_values.end());
     int non_leaves = pow(2, this->tree_deep) - 1; //非叶子结点个数
     this->tree_deep += 1; //加入叶子结点数量
     int leaves = pow(2, this->tree_deep) - 1; //总结点个数
@@ -21,8 +23,8 @@ tree_deep(tree_deeps), leaves_value(leaves_values), roadline(roadlines) {
         BiTreeNode *noder = new BiTreeNode;
         if (num >= non_leaves){
             str >> nodel->data >> noder->data;
-            this->leaves_value.erase(this->leaves_value.begin());
-            this->leaves_value.erase(this->leaves_value.begin());
+            leaves_v.erase(leaves_v.begin());
+            leaves_v.erase(leaves_v.begin());
         }
         (*BiTreeNode_squeue.begin())->lchild = nodel;
         (*BiTreeNode_squeue.begin())->rchild = noder;
@@ -35,14 +37,13 @@ tree_deep(tree_deeps), leaves_value(leaves_values), roadline(roadlines) {
 }
 
 patrolli::~patrolli() {
-
+    destroy(this->root);
 }
 
 patrolli::patrolli(const patrolli &p) {
     this->tree_deep = p.tree_deep;
     this->leaves_value = p.leaves_value;
     this->roadline = p.roadline;
-    this->root = p.root;
     this->result = p.result;
 }
 
@@ -55,7 +56,6 @@ patrolli::patrolli(patrolli &&p) {
     p.tree_deep = 0;
     p.leaves_value.clear();
     p.roadline.clear();
-    p.root = nullptr;
     p.result.clear();
 }
 
@@ -63,7 +63,6 @@ patrolli &patrolli::operator=(const patrolli &p) {
     this->tree_deep = p.tree_deep;
     this->leaves_value = p.leaves_value;
     this->roadline = p.roadline;
-    this->root = p.root;
     this->result = p.result;
     return *this;
 }
@@ -77,20 +76,25 @@ patrolli &patrolli::operator=(patrolli &&p) {
     p.tree_deep = 0;
     p.leaves_value.clear();
     p.roadline.clear();
-    p.root = nullptr;
     p.result.clear();
     return *this;
 }
 
 ostream &patrolli::operator()(ostream &os) const {
-
+    os << "树的深度为: " << this->tree_deep << endl;
+    os << "输入路径分别为: ";
+    for (auto const &e : this->roadline) os << e << " ";
+    os << "叶子序列为: " << this->leaves_value << endl;
     return os;
-}
-
-void patrolli::buildtree() {
-
 }
 
 void patrolli::go() {
 
+}
+void destroy(BiTreeNode *node){
+    if (node){
+        destroy(node->lchild);
+        destroy(node->rchild);
+        delete node;
+    }
 }
