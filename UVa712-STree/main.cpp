@@ -9,5 +9,6 @@
 using namespace std;
 int main(int argc, char *argv[]){
     const string path = "/Users/songyunlong/CLionProjects/ACM4/UVa712-STree/file";
+    patrolli p(3, "00000111", vector<string>({"000", "010", "111", "110"}));
     return 0;
 }

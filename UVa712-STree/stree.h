@@ -8,7 +8,7 @@
 #include <vector>
 using namespace std;
 struct BiTreeNode{
-    char data;
+    char data = ' ';
     BiTreeNode *lchild = nullptr;
     BiTreeNode *rchild = nullptr;
 };
