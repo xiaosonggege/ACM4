@@ -85,11 +85,15 @@ ostream &patrolli::operator()(ostream &os) const {
     os << "输入路径分别为: ";
     for (auto const &e : this->roadline) os << e << " ";
     os << "叶子序列为: " << this->leaves_value << endl;
+    os << "最终译码结果为: " << this->result << endl;
     return os;
 }
 
 void patrolli::go() {
-
+    decltype(this->roadline) temp_roadline(this->roadline.begin(), this->roadline.end());
+    for (auto &e : temp_roadline){
+        this->result.push_back(go_go(this->root, e));
+    }
 }
 void destroy(BiTreeNode *node){
     if (node){
@@ -97,4 +101,17 @@ void destroy(BiTreeNode *node){
         destroy(node->rchild);
         delete node;
     }
+}
+
+char go_go(BiTreeNode *node, string &line) {
+    if (line.empty()) return node->data;
+    else {
+        switch (line.front()){
+            case '0': node = node->lchild; break;
+            default: node = node->rchild;
+        }
+        line.erase(line.begin());
+        return go_go(node, line);
+    }
+    return 0;
 }

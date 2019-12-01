@@ -32,4 +32,5 @@ public:
     void go(); //译码
 };
 void destroy(BiTreeNode *node);
+char go_go(BiTreeNode *node, string &line);
 #endif //ACM3_CLION_STREE_H
