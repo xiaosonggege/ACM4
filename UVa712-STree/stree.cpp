@@ -33,7 +33,6 @@ tree_deep(tree_deeps), leaves_value(leaves_values), roadline(roadlines) {
         BiTreeNode_squeue.push_back(noder);
         BiTreeNode_squeue.erase(BiTreeNode_squeue.begin());
     }
-
 }
 
 patrolli::~patrolli() {
@@ -95,11 +94,13 @@ void patrolli::go() {
         this->result.push_back(go_go(this->root, e));
     }
 }
+
 void destroy(BiTreeNode *node){
     if (node){
         destroy(node->lchild);
         destroy(node->rchild);
         delete node;
+        node = nullptr;
     }
 }
 
