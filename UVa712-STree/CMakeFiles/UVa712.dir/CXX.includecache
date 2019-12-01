@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/songyunlong/CLionProjects/ACM4/UVa712-STree/main.cpp
+stree.h
+/Users/songyunlong/CLionProjects/ACM4/UVa712-STree/stree.h
+iostream
+-
+vector
+-
+fstream
+-
+string
+-
+fstream
+-
+sstream
+-
+memory
+-
+
+/Users/songyunlong/CLionProjects/ACM4/UVa712-STree/stree.cpp
+stree.h
+/Users/songyunlong/CLionProjects/ACM4/UVa712-STree/stree.h
+cmath
+-
+sstream
+-
+memory
+-
+
+/Users/songyunlong/CLionProjects/ACM4/UVa712-STree/stree.h
+string
+-
+vector
+-
+

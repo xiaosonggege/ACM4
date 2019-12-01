@@ -1,0 +1,3 @@
+/Users/songyunlong/CLionProjects/ACM4/UVa712-STree/CMakeFiles/rebuild_cache.dir
+/Users/songyunlong/CLionProjects/ACM4/UVa712-STree/CMakeFiles/edit_cache.dir
+/Users/songyunlong/CLionProjects/ACM4/UVa712-STree/CMakeFiles/UVa712.dir
