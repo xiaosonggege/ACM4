@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/Users/songyunlong/CLionProjects/ACM4/UVa536-TreeRecovery/main.cpp" "/Users/songyunlong/CLionProjects/ACM4/UVa712-STree/CMakeFiles/UVa712.dir/Users/songyunlong/CLionProjects/ACM4/UVa536-TreeRecovery/main.cpp.o"
   "/Users/songyunlong/CLionProjects/ACM4/UVa712-STree/main.cpp" "/Users/songyunlong/CLionProjects/ACM4/UVa712-STree/CMakeFiles/UVa712.dir/main.cpp.o"
   "/Users/songyunlong/CLionProjects/ACM4/UVa712-STree/stree.cpp" "/Users/songyunlong/CLionProjects/ACM4/UVa712-STree/CMakeFiles/UVa712.dir/stree.cpp.o"
   )

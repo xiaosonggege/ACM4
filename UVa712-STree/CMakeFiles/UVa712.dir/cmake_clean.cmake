@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/UVa712.dir/Users/songyunlong/CLionProjects/ACM4/UVa536-TreeRecovery/main.cpp.o"
   "CMakeFiles/UVa712.dir/main.cpp.o"
   "CMakeFiles/UVa712.dir/stree.cpp.o"
   "UVa712"

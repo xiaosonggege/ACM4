@@ -39,10 +39,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/local/Cellar/cmake/3.15.5/bin/cmake
+CMAKE_COMMAND = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake
 
 # The command to remove a file.
-RM = /usr/local/Cellar/cmake/3.15.5/bin/cmake -E remove -f
+RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /Users/songyunlong/CLionProjects/ACM4/UVa712-STree
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/local/Cellar/cmake/3.15.5/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -69,8 +69,8 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/local/Cellar/cmake/3.15.5/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -122,6 +122,33 @@ UVa712: cmake_check_build_system
 UVa712/fast:
 	$(MAKE) -f CMakeFiles/UVa712.dir/build.make CMakeFiles/UVa712.dir/build
 .PHONY : UVa712/fast
+
+Users/songyunlong/CLionProjects/ACM4/UVa536-TreeRecovery/main.o: Users/songyunlong/CLionProjects/ACM4/UVa536-TreeRecovery/main.cpp.o
+
+.PHONY : Users/songyunlong/CLionProjects/ACM4/UVa536-TreeRecovery/main.o
+
+# target to build an object file
+Users/songyunlong/CLionProjects/ACM4/UVa536-TreeRecovery/main.cpp.o:
+	$(MAKE) -f CMakeFiles/UVa712.dir/build.make CMakeFiles/UVa712.dir/Users/songyunlong/CLionProjects/ACM4/UVa536-TreeRecovery/main.cpp.o
+.PHONY : Users/songyunlong/CLionProjects/ACM4/UVa536-TreeRecovery/main.cpp.o
+
+Users/songyunlong/CLionProjects/ACM4/UVa536-TreeRecovery/main.i: Users/songyunlong/CLionProjects/ACM4/UVa536-TreeRecovery/main.cpp.i
+
+.PHONY : Users/songyunlong/CLionProjects/ACM4/UVa536-TreeRecovery/main.i
+
+# target to preprocess a source file
+Users/songyunlong/CLionProjects/ACM4/UVa536-TreeRecovery/main.cpp.i:
+	$(MAKE) -f CMakeFiles/UVa712.dir/build.make CMakeFiles/UVa712.dir/Users/songyunlong/CLionProjects/ACM4/UVa536-TreeRecovery/main.cpp.i
+.PHONY : Users/songyunlong/CLionProjects/ACM4/UVa536-TreeRecovery/main.cpp.i
+
+Users/songyunlong/CLionProjects/ACM4/UVa536-TreeRecovery/main.s: Users/songyunlong/CLionProjects/ACM4/UVa536-TreeRecovery/main.cpp.s
+
+.PHONY : Users/songyunlong/CLionProjects/ACM4/UVa536-TreeRecovery/main.s
+
+# target to generate assembly for a file
+Users/songyunlong/CLionProjects/ACM4/UVa536-TreeRecovery/main.cpp.s:
+	$(MAKE) -f CMakeFiles/UVa712.dir/build.make CMakeFiles/UVa712.dir/Users/songyunlong/CLionProjects/ACM4/UVa536-TreeRecovery/main.cpp.s
+.PHONY : Users/songyunlong/CLionProjects/ACM4/UVa536-TreeRecovery/main.cpp.s
 
 main.o: main.cpp.o
 
@@ -186,6 +213,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... UVa712"
+	@echo "... Users/songyunlong/CLionProjects/ACM4/UVa536-TreeRecovery/main.o"
+	@echo "... Users/songyunlong/CLionProjects/ACM4/UVa536-TreeRecovery/main.i"
+	@echo "... Users/songyunlong/CLionProjects/ACM4/UVa536-TreeRecovery/main.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
