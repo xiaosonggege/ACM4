@@ -6,6 +6,7 @@
 #define ACM3_CLION_TREERECOVERY_H
 #include <string>
 #include <vector>
+#include <iostream>
 using namespace std;
 struct BiTreeNode{
     char data;
@@ -15,6 +16,8 @@ struct BiTreeNode{
 class treerecovery{
 private:
     string input;
+    string preorder;
+    string midorder;
     BiTreeNode *root = nullptr;
     string result;
 public:
@@ -28,4 +31,5 @@ public:
     ostream & operator()(ostream &) const;
     BiTreeNode *& build();
 };
+void destroy(BiTreeNode *);
 #endif //ACM3_CLION_TREERECOVERY_H
