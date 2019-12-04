@@ -23,13 +23,14 @@ private:
 public:
     treerecovery() = default;
     virtual ~treerecovery();
-    treerecovery(const string &);
+    treerecovery(const string &, const string &);
     treerecovery(const treerecovery &);
     treerecovery(treerecovery &&);
     treerecovery & operator=(const treerecovery &) noexcept;
     treerecovery & operator=(treerecovery &&) noexcept ;
     ostream & operator()(ostream &) const;
-    BiTreeNode *& build();
+    BiTreeNode * build(string);
 };
 void destroy(BiTreeNode *);
+void postorder(BiTreeNode *);
 #endif //ACM3_CLION_TREERECOVERY_H

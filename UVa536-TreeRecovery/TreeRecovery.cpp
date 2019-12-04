@@ -9,7 +9,7 @@
 #include <algorithm>
 #include <memory>
 using namespace std;
-treerecovery::treerecovery(const string &inputs): input(inputs) {
+treerecovery::treerecovery(const string &preorders, const string &midorders): preorder(preorders), midorder(midorders) {
     istringstream istr(this->input);
     istr >> this->preorder >> this->midorder;
 //    cout << this->preorder << " " << this->midorder << endl;
@@ -71,11 +71,23 @@ ostream &treerecovery::operator()(ostream &os) const {
     vector<string> temp_input(in_iter, eof);
     copy(temp_input.cbegin(), temp_input.cend(), out_iter);
     os << endl;
+    postorder(this->root);
     return os;
 }
 
-BiTreeNode *&treerecovery::build() {
-    return this->root;
+BiTreeNode * treerecovery::build(string sub_midorder) {
+    //在先序中找到子串的根节点
+    auto pos = sub_midorder.find_first_of(this->preorder);
+    shared_ptr<string> left_p = make_shared<string>(sub_midorder.begin(), sub_midorder.begin()+pos),
+            right_p = make_shared<string>(sub_midorder.begin()+pos+1, sub_midorder.end());
+    BiTreeNode *node = new BiTreeNode;
+    node->data = sub_midorder[pos];
+    if (!this->root) this->root = node;
+    if (left_p->empty()) return node;
+    else node->lchild = this->build(*left_p);
+    if (right_p->empty()) return node;
+    else node->rchild = this->build(*right_p);
+    return nullptr;
 }
 
 void destroy(BiTreeNode *node) {
@@ -84,5 +96,13 @@ void destroy(BiTreeNode *node) {
         destroy(node->rchild);
         delete node;
         node = nullptr;
+    }
+}
+
+void postorder(BiTreeNode *node){
+    if (node){
+        postorder(node->lchild);
+        postorder(node->rchild);
+        cout << node->data << endl;
     }
 }
