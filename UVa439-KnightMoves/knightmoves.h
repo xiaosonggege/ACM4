@@ -5,13 +5,15 @@
 #ifndef ACM3_CLION_KNIGHTMOVES_H
 #define ACM3_CLION_KNIGHTMOVES_H
 #include <string>
+#include <vector>
 #include <iostream>
 using namespace std;
 class KnightMoves{
 private:
+    vector<vector<int>> qipan;
     string start;
     string end;
-    int result;
+    int result = 0;
 public:
     KnightMoves() = default;
     virtual ~KnightMoves() = default;
