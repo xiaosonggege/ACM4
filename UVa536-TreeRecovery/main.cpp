@@ -8,6 +8,7 @@
 #include <fstream>
 #include <memory>
 #include <sstream>
+#include <iterator>
 using namespace std;
 int main(int argc, char *argv[]){
     const string &path = "/Users/songyunlong/CLionProjects/ACM4/UVa536-TreeRecovery/file";
@@ -22,8 +23,12 @@ int main(int argc, char *argv[]){
         treerecovery tr(*s1, *s2);
         tr.build(*s2);
         tr(cout);
+        str.clear();
     }
     ifstrm.close();
+//    string s = "songyunlong", ss = "yun";
+//    int i = s.find_first_of(ss);
+//    cout << i << endl;
     return 0;
 }
 
