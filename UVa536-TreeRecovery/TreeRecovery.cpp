@@ -66,8 +66,9 @@ treerecovery &treerecovery::operator=(treerecovery &&t) noexcept {
 ostream &treerecovery::operator()(ostream &os) const {
     os << "先序遍历和中序遍历结果分别为:" << endl;
     os << this->preorder << " " << this->midorder << endl;
-    os << endl;
+    os << "后序遍历结果为: " << endl;
     postorder(this->root);
+    os << endl;
     return os;
 }
 
@@ -78,13 +79,11 @@ BiTreeNode * treerecovery::build(string sub_midorder) {
     shared_ptr<string> left_p = make_shared<string>(sub_midorder.begin(), pos_iter),
             right_p = make_shared<string>(pos_iter+1, sub_midorder.end());
     BiTreeNode *node = new BiTreeNode;
-    node->data = sub_midorder[pos];
+    node->data = *pos_iter;
     if (!this->root) this->root = node;
-    if (left_p->empty()) return node;
-    else node->lchild = this->build(*left_p);
-    if (right_p->empty()) return node;
-    else node->rchild = this->build(*right_p);
-    return nullptr;
+    if (!left_p->empty()) node->lchild = this->build(*left_p);
+    if (!right_p->empty()) node->rchild = this->build(*right_p);
+    return node;
 }
 
 void destroy(BiTreeNode *node) {
@@ -92,7 +91,7 @@ void destroy(BiTreeNode *node) {
         destroy(node->lchild);
         destroy(node->rchild);
         delete node;
-        node = nullptr;
+//        node = nullptr;
     }
 }
 
@@ -100,6 +99,6 @@ void postorder(BiTreeNode *node){
     if (node){
         postorder(node->lchild);
         postorder(node->rchild);
-        cout << node->data << endl;
+        cout << node->data;
     }
 }

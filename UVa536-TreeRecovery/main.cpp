@@ -11,6 +11,7 @@
 #include <iterator>
 using namespace std;
 int main(int argc, char *argv[]){
+    cout << argv[1] << endl;
     const string &path = "/Users/songyunlong/CLionProjects/ACM4/UVa536-TreeRecovery/file";
     ifstream ifstrm;
     ifstrm.open(path, ios::in);
@@ -26,9 +27,6 @@ int main(int argc, char *argv[]){
         str.clear();
     }
     ifstrm.close();
-//    string s = "songyunlong", ss = "yun";
-//    int i = s.find_first_of(ss);
-//    cout << i << endl;
     return 0;
 }
 
