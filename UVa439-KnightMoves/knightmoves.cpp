@@ -17,10 +17,12 @@ KnightMoves::KnightMoves(const string &starts, const string &ends): start(starts
     str_iter << this->start;
     str_iter >> first_ >> second_;
     this->qipan[mapping(first_)][second_] = 1;
+    this->start_axis = make_pair(mapping(first_), second_);
     str_iter.clear();
     str_iter << this->end;
     str_iter >> first_ >> second_;
     this->qipan[mapping(first_)][second_] = 1;
+    this->end_axis = make_pair(mapping(first_), second_);
 }
 
 KnightMoves::KnightMoves(const KnightMoves &k) {
@@ -67,6 +69,28 @@ ostream &KnightMoves::operator()(ostream &os) const {
     return os;
 }
 
-void KnightMoves::move() {
+void KnightMoves::move(vector<tuple<int, int, int>> &stack, int x, int y, int step) {
+//    stack.push_back(make_tuple(this->start_axis.first, this->start_axis.second, 0));
+    if (this->qipan[x-1][y-2] != 1 && this->qipan[x-1][y-2] != 2) stack.push_back(make_tuple(x-1, y-2, step+1));
+    else
+    if (this->qipan[x-1][y+2] != 1 && this->qipan[x-1][y+2] != 2) stack.push_back(make_tuple(x-1, y+2, step+1));
+    else
+    if (this->qipan[x+1][y-2] != 1 && this->qipan[x+1][y-2] != 2) stack.push_back(make_tuple(x+1, y-2, step+1));
+    else
+    if (this->qipan[x+1][y+2] != 1 && this->qipan[x+1][y+2] != 2) stack.push_back(make_tuple(x+1, y+2, step+1));
+    else
+    if (this->qipan[x-2][y-1] != 1 && this->qipan[x-2][y-1] != 2) stack.push_back(make_tuple(x-2, y-1, step+1));
+    else
+    if (this->qipan[x-2][y+1] != 1 && this->qipan[x-2][y+1] != 2) stack.push_back(make_tuple(x-2, y+1, step+1));
+    else
+    if (this->qipan[x+2][y-1] != 1 && this->qipan[x+2][y-1] != 2) stack.push_back(make_tuple(x+2, y-1, step+1));
+    else
+    if (this->qipan[x+2][y+1] != 1 && this->qipan[x+2][y+1] != 2) stack.push_back(make_tuple(x+2, y+1, step+1));
+    else{
+        tuple<int, int, int> stack_head = stack.front();
+        this->qipan[get<0>(stack_head)][get<1>(stack_head)] = 2;
+        stack.erase(stack.begin());
+        this->move(stack, get<0>(stack_head), get<1>(stack_head), get<2>(stack_head));
+    }
 
 }

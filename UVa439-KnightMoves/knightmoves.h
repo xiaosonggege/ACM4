@@ -7,6 +7,8 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <utility>
+#include <tuple>
 using namespace std;
 class KnightMoves{
 private:
@@ -14,6 +16,7 @@ private:
     string start;
     string end;
     int result = 0;
+    pair<int, int> start_axis, end_axis;
 public:
     KnightMoves() = default;
     virtual ~KnightMoves() = default;
@@ -23,6 +26,6 @@ public:
     KnightMoves & operator=(const KnightMoves &);
     KnightMoves & operator=(KnightMoves &&);
     ostream & operator()(ostream &) const;
-    void move(); //移动函数
+    void move(vector<tuple<int, int, int>> &, int, int, int); //移动函数
 };
 #endif //ACM3_CLION_KNIGHTMOVES_H

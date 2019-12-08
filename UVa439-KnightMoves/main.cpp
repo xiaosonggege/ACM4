@@ -6,6 +6,7 @@
 #include <sstream>
 #include <vector>
 #include <string>
+#include "knightmoves.h"
 using namespace std;
 int main(int argc, char *argv[]) {
     const string &path = "/Users/songyunlong/CLionProjects/ACM4/UVa439-KnightMoves/file";
@@ -18,7 +19,9 @@ int main(int argc, char *argv[]) {
         str_iter << temp;
         string pos1, pos2;
         str_iter >> pos1 >> pos2;
-        //输入类中
+        KnightMoves k(pos1, pos2);
+
+        str_iter.clear();
     }
     ifstrm.close();
     return 0;
