@@ -15,7 +15,7 @@ private:
     vector<vector<int>> qipan;
     string start;
     string end;
-    int result = 0;
+    int result = 1;
     pair<int, int> start_axis, end_axis;
 public:
     KnightMoves() = default;

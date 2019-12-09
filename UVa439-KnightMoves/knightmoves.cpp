@@ -81,7 +81,7 @@ void KnightMoves::move(vector<tuple<int, int, int>> &stack, int x, int y, int st
             else this->result = step;
         }
     }
-    else if (x-1 >= 0 && y+2 <= this->qipan[0].size()){
+    if (x-1 >= 0 && y+2 <= this->qipan[0].size()){
         if (this->qipan[x-1][y+2] != 2) {
             if (this->qipan[x-1][y+2] != 1) {
                 stack.push_back(make_tuple(x-1, y+2, step+1));
@@ -90,7 +90,7 @@ void KnightMoves::move(vector<tuple<int, int, int>> &stack, int x, int y, int st
             else this->result = step;
         }
     }
-    else if (x+1 <= this->qipan.size() && y-2 >= 0){
+    if (x+1 <= this->qipan.size() && y-2 >= 0){
         if (this->qipan[x+1][y-2] != 2) {
             if (this->qipan[x+1][y-2] != 1) {
                 stack.push_back(make_tuple(x+1, y-2, step+1));
@@ -99,7 +99,7 @@ void KnightMoves::move(vector<tuple<int, int, int>> &stack, int x, int y, int st
             else this->result = step;
         }
     }
-    else if (x+1 <= this->qipan.size() && y+2 <= this->qipan[0].size()){
+    if (x+1 <= this->qipan.size() && y+2 <= this->qipan[0].size()){
         if (this->qipan[x+1][y+2] != 2) {
             if (this->qipan[x+1][y+2] != 1) {
                 stack.push_back(make_tuple(x+1, y+2, step+1));
@@ -108,7 +108,7 @@ void KnightMoves::move(vector<tuple<int, int, int>> &stack, int x, int y, int st
             else this->result = step;
         }
     }
-    else if (x-2 >= 0 && y-1 >= 0){
+    if (x-2 >= 0 && y-1 >= 0){
         if (this->qipan[x-2][y-1] != 2) {
             if (this->qipan[x-2][y-1] != 1) {
                 stack.push_back(make_tuple(x-2, y-1, step+1));
@@ -117,7 +117,7 @@ void KnightMoves::move(vector<tuple<int, int, int>> &stack, int x, int y, int st
             else this->result = step;
         }
     }
-    else if (x-2 >= 0 && y+1 <= this->qipan[0].size()){
+    if (x-2 >= 0 && y+1 <= this->qipan[0].size()){
         if (this->qipan[x-2][y+1] != 2) {
             if (this->qipan[x-2][y+1] != 1) {
                 stack.push_back(make_tuple(x-2, y+1, step+1));
@@ -126,7 +126,7 @@ void KnightMoves::move(vector<tuple<int, int, int>> &stack, int x, int y, int st
             else this->result = step;
         }
     }
-    else if (x+2 <= this->qipan.size() && y-1 >= 0){
+    if (x+2 <= this->qipan.size() && y-1 >= 0){
         if (this->qipan[x+2][y-1] != 2) {
             if (this->qipan[x+2][y-1] != 1) {
                 stack.push_back(make_tuple(x+2, y-1, step+1));
@@ -135,7 +135,7 @@ void KnightMoves::move(vector<tuple<int, int, int>> &stack, int x, int y, int st
             else this->result = step;
         }
     }
-    else if (x+2 <= this->qipan.size() && y+1 <= this->qipan[0].size()){
+    if (x+2 <= this->qipan.size() && y+1 <= this->qipan[0].size()){
         if (this->qipan[x+2][y+1] != 2) {
             if (this->qipan[x+2][y+1] != 1) {
                 stack.push_back(make_tuple(x+2, y+1, step+1));
@@ -144,14 +144,13 @@ void KnightMoves::move(vector<tuple<int, int, int>> &stack, int x, int y, int st
             else this->result = step;
         }
     }
-    else{
-        tuple<int, int, int> stack_head = stack.front();
+    if (this->result != 1){
         stack.erase(stack.begin());
-        this->move(stack, get<0>(stack_head), get<1>(stack_head), get<2>(stack_head));
+        this->move(stack, get<0>(stack.front()), get<1>(stack.front()), get<2>(stack.front()));
     }
 }
 void KnightMoves::BFS() {
     shared_ptr<vector<tuple<int, int, int>>> stack = make_shared<vector<tuple<int, int, int>>>();
-    stack->push_back(make_tuple(this->start_axis.first, this->start_axis.second, 0));
-    this->move(*stack, this->start_axis.first, this->start_axis.second, 0);
+    stack->push_back(make_tuple(this->start_axis.first, this->start_axis.second, 1));
+    this->move(*stack, this->start_axis.first, this->start_axis.second, 1);
 }
