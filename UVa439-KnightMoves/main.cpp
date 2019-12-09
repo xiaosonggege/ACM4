@@ -20,7 +20,8 @@ int main(int argc, char *argv[]) {
         string pos1, pos2;
         str_iter >> pos1 >> pos2;
         KnightMoves k(pos1, pos2);
-
+        k.BFS();
+        k(cout);
         str_iter.clear();
     }
     ifstrm.close();

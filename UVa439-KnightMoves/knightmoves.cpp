@@ -4,6 +4,7 @@
 #include "knightmoves.h"
 #include <algorithm>
 #include <sstream>
+#include <string>
 using namespace std;
 KnightMoves::KnightMoves(const string &starts, const string &ends): start(starts), end(ends) {
     const string &standard = "abcdefgh";
@@ -66,31 +67,77 @@ KnightMoves &KnightMoves::operator=(KnightMoves &&k) {
 ostream &KnightMoves::operator()(ostream &os) const {
     os << "起点为: " << this->start << endl;
     os << "终点为: " << this->end << endl;
+    os << "所走步数为: " << this->result << endl;
     return os;
 }
 
 void KnightMoves::move(vector<tuple<int, int, int>> &stack, int x, int y, int step) {
-//    stack.push_back(make_tuple(this->start_axis.first, this->start_axis.second, 0));
-    if (this->qipan[x-1][y-2] != 1 && this->qipan[x-1][y-2] != 2) stack.push_back(make_tuple(x-1, y-2, step+1));
+    if (this->qipan[x-1][y-2] != 2) {
+        if (this->qipan[x-1][y-2] != 1) {
+            stack.push_back(make_tuple(x-1, y-2, step+1));
+            this->qipan[x-1][y-2] = 2;
+        }
+        else this->result = step;
+    }
     else
-    if (this->qipan[x-1][y+2] != 1 && this->qipan[x-1][y+2] != 2) stack.push_back(make_tuple(x-1, y+2, step+1));
+    if (this->qipan[x-1][y+2] != 2) {
+        if (this->qipan[x-1][y+2] != 1) {
+            stack.push_back(make_tuple(x-1, y+2, step+1));
+            this->qipan[x-1][y+2] = 2;
+        }
+        else this->result = step;
+    }
     else
-    if (this->qipan[x+1][y-2] != 1 && this->qipan[x+1][y-2] != 2) stack.push_back(make_tuple(x+1, y-2, step+1));
-    else
-    if (this->qipan[x+1][y+2] != 1 && this->qipan[x+1][y+2] != 2) stack.push_back(make_tuple(x+1, y+2, step+1));
-    else
-    if (this->qipan[x-2][y-1] != 1 && this->qipan[x-2][y-1] != 2) stack.push_back(make_tuple(x-2, y-1, step+1));
-    else
-    if (this->qipan[x-2][y+1] != 1 && this->qipan[x-2][y+1] != 2) stack.push_back(make_tuple(x-2, y+1, step+1));
-    else
-    if (this->qipan[x+2][y-1] != 1 && this->qipan[x+2][y-1] != 2) stack.push_back(make_tuple(x+2, y-1, step+1));
-    else
-    if (this->qipan[x+2][y+1] != 1 && this->qipan[x+2][y+1] != 2) stack.push_back(make_tuple(x+2, y+1, step+1));
+    if (this->qipan[x+1][y-2] != 2) {
+        if (this->qipan[x+1][y-2] != 1) {
+            stack.push_back(make_tuple(x+1, y-2, step+1));
+            this->qipan[x+1][y-2] = 2;
+        }
+        else this->result = step;
+    }
+    else if (this->qipan[x+1][y+2] != 2) {
+        if (this->qipan[x+1][y+2] != 1) {
+            stack.push_back(make_tuple(x+1, y+2, step+1));
+            this->qipan[x+1][y+2] = 2;
+        }
+        else this->result = step;
+    }
+    else if (this->qipan[x-2][y-1] != 2) {
+        if (this->qipan[x-2][y-1] != 1) {
+            stack.push_back(make_tuple(x-2, y-1, step+1));
+            this->qipan[x-2][y-1] = 2;
+        }
+        else this->result = step;
+    }
+    else if (this->qipan[x-2][y+1] != 2) {
+        if (this->qipan[x-2][y+1] != 1) {
+            stack.push_back(make_tuple(x-2, y+1, step+1));
+            this->qipan[x-2][y+1] = 2;
+        }
+        else this->result = step;
+    }
+    else if (this->qipan[x+2][y-1] != 2) {
+        if (this->qipan[x+2][y-1] != 1) {
+            stack.push_back(make_tuple(x+2, y-1, step+1));
+            this->qipan[x+2][y-1] = 2;
+        }
+        else this->result = step;
+    }
+    else if (this->qipan[x+2][y+1] != 2) {
+        if (this->qipan[x+2][y+1] != 1) {
+            stack.push_back(make_tuple(x+2, y+1, step+1));
+            this->qipan[x+2][y+1] = 2;
+        }
+        else this->result = step;
+    }
     else{
         tuple<int, int, int> stack_head = stack.front();
-        this->qipan[get<0>(stack_head)][get<1>(stack_head)] = 2;
         stack.erase(stack.begin());
         this->move(stack, get<0>(stack_head), get<1>(stack_head), get<2>(stack_head));
     }
-
+}
+void KnightMoves::BFS() {
+    shared_ptr<vector<tuple<int, int, int>>> stack = make_shared<vector<tuple<int, int, int>>>();
+    stack->push_back(make_tuple(this->start_axis.first, this->start_axis.second, 0));
+    this->move(*stack, this->start_axis.first, this->start_axis.second, 0);
 }

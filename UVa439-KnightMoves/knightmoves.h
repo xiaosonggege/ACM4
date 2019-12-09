@@ -27,5 +27,6 @@ public:
     KnightMoves & operator=(KnightMoves &&);
     ostream & operator()(ostream &) const;
     void move(vector<tuple<int, int, int>> &, int, int, int); //移动函数
+    void BFS(); //BFS函数
 };
 #endif //ACM3_CLION_KNIGHTMOVES_H
