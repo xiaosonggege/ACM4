@@ -72,63 +72,77 @@ ostream &KnightMoves::operator()(ostream &os) const {
 }
 
 void KnightMoves::move(vector<tuple<int, int, int>> &stack, int x, int y, int step) {
-    if (this->qipan[x-1][y-2] != 2) {
-        if (this->qipan[x-1][y-2] != 1) {
-            stack.push_back(make_tuple(x-1, y-2, step+1));
-            this->qipan[x-1][y-2] = 2;
+    if (x-1 >= 0 && y-2 >=0){
+        if (this->qipan[x-1][y-2] != 2) {
+            if (this->qipan[x-1][y-2] != 1) {
+                stack.push_back(make_tuple(x-1, y-2, step+1));
+                this->qipan[x-1][y-2] = 2;
+            }
+            else this->result = step;
         }
-        else this->result = step;
     }
-    else
-    if (this->qipan[x-1][y+2] != 2) {
-        if (this->qipan[x-1][y+2] != 1) {
-            stack.push_back(make_tuple(x-1, y+2, step+1));
-            this->qipan[x-1][y+2] = 2;
+    else if (x-1 >= 0 && y+2 <= this->qipan[0].size()){
+        if (this->qipan[x-1][y+2] != 2) {
+            if (this->qipan[x-1][y+2] != 1) {
+                stack.push_back(make_tuple(x-1, y+2, step+1));
+                this->qipan[x-1][y+2] = 2;
+            }
+            else this->result = step;
         }
-        else this->result = step;
     }
-    else
-    if (this->qipan[x+1][y-2] != 2) {
-        if (this->qipan[x+1][y-2] != 1) {
-            stack.push_back(make_tuple(x+1, y-2, step+1));
-            this->qipan[x+1][y-2] = 2;
+    else if (x+1 <= this->qipan.size() && y-2 >= 0){
+        if (this->qipan[x+1][y-2] != 2) {
+            if (this->qipan[x+1][y-2] != 1) {
+                stack.push_back(make_tuple(x+1, y-2, step+1));
+                this->qipan[x+1][y-2] = 2;
+            }
+            else this->result = step;
         }
-        else this->result = step;
     }
-    else if (this->qipan[x+1][y+2] != 2) {
-        if (this->qipan[x+1][y+2] != 1) {
-            stack.push_back(make_tuple(x+1, y+2, step+1));
-            this->qipan[x+1][y+2] = 2;
+    else if (x+1 <= this->qipan.size() && y+2 <= this->qipan[0].size()){
+        if (this->qipan[x+1][y+2] != 2) {
+            if (this->qipan[x+1][y+2] != 1) {
+                stack.push_back(make_tuple(x+1, y+2, step+1));
+                this->qipan[x+1][y+2] = 2;
+            }
+            else this->result = step;
         }
-        else this->result = step;
     }
-    else if (this->qipan[x-2][y-1] != 2) {
-        if (this->qipan[x-2][y-1] != 1) {
-            stack.push_back(make_tuple(x-2, y-1, step+1));
-            this->qipan[x-2][y-1] = 2;
+    else if (x-2 >= 0 && y-1 >= 0){
+        if (this->qipan[x-2][y-1] != 2) {
+            if (this->qipan[x-2][y-1] != 1) {
+                stack.push_back(make_tuple(x-2, y-1, step+1));
+                this->qipan[x-2][y-1] = 2;
+            }
+            else this->result = step;
         }
-        else this->result = step;
     }
-    else if (this->qipan[x-2][y+1] != 2) {
-        if (this->qipan[x-2][y+1] != 1) {
-            stack.push_back(make_tuple(x-2, y+1, step+1));
-            this->qipan[x-2][y+1] = 2;
+    else if (x-2 >= 0 && y+1 <= this->qipan[0].size()){
+        if (this->qipan[x-2][y+1] != 2) {
+            if (this->qipan[x-2][y+1] != 1) {
+                stack.push_back(make_tuple(x-2, y+1, step+1));
+                this->qipan[x-2][y+1] = 2;
+            }
+            else this->result = step;
         }
-        else this->result = step;
     }
-    else if (this->qipan[x+2][y-1] != 2) {
-        if (this->qipan[x+2][y-1] != 1) {
-            stack.push_back(make_tuple(x+2, y-1, step+1));
-            this->qipan[x+2][y-1] = 2;
+    else if (x+2 <= this->qipan.size() && y-1 >= 0){
+        if (this->qipan[x+2][y-1] != 2) {
+            if (this->qipan[x+2][y-1] != 1) {
+                stack.push_back(make_tuple(x+2, y-1, step+1));
+                this->qipan[x+2][y-1] = 2;
+            }
+            else this->result = step;
         }
-        else this->result = step;
     }
-    else if (this->qipan[x+2][y+1] != 2) {
-        if (this->qipan[x+2][y+1] != 1) {
-            stack.push_back(make_tuple(x+2, y+1, step+1));
-            this->qipan[x+2][y+1] = 2;
+    else if (x+2 <= this->qipan.size() && y+1 <= this->qipan[0].size()){
+        if (this->qipan[x+2][y+1] != 2) {
+            if (this->qipan[x+2][y+1] != 1) {
+                stack.push_back(make_tuple(x+2, y+1, step+1));
+                this->qipan[x+2][y+1] = 2;
+            }
+            else this->result = step;
         }
-        else this->result = step;
     }
     else{
         tuple<int, int, int> stack_head = stack.front();
