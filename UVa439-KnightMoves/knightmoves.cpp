@@ -17,13 +17,13 @@ KnightMoves::KnightMoves(const string &starts, const string &ends): start(starts
     str_iter.clear();
     str_iter << this->start;
     str_iter >> first_ >> second_;
-    this->qipan[mapping(first_)][second_] = 1;
-    this->start_axis = make_pair(mapping(first_), second_);
+    this->qipan[mapping(first_)][second_-1] = 1;
+    this->start_axis = make_pair(mapping(first_), second_-1);
     str_iter.clear();
     str_iter << this->end;
     str_iter >> first_ >> second_;
-    this->qipan[mapping(first_)][second_] = 1;
-    this->end_axis = make_pair(mapping(first_), second_);
+    this->qipan[mapping(first_)][second_-1] = 1;
+    this->end_axis = make_pair(mapping(first_), second_-1);
 }
 
 KnightMoves::KnightMoves(const KnightMoves &k) {
@@ -72,85 +72,115 @@ ostream &KnightMoves::operator()(ostream &os) const {
 }
 
 void KnightMoves::move(vector<tuple<int, int, int>> &stack, int x, int y, int step) {
-    if (x-1 >= 0 && y-2 >=0){
+    int flag = 0;
+    if (x-1 >= 0 && y-2 >=0 && !flag){
         if (this->qipan[x-1][y-2] != 2) {
             if (this->qipan[x-1][y-2] != 1) {
                 stack.push_back(make_tuple(x-1, y-2, step+1));
                 this->qipan[x-1][y-2] = 2;
             }
-            else this->result = step;
+            else {
+                this->result = step + 1;
+                flag = 1;
+            }
         }
     }
-    if (x-1 >= 0 && y+2 <= this->qipan[0].size()){
+    if (x-1 >= 0 && y+2 <= this->qipan[0].size() && !flag){
         if (this->qipan[x-1][y+2] != 2) {
             if (this->qipan[x-1][y+2] != 1) {
                 stack.push_back(make_tuple(x-1, y+2, step+1));
                 this->qipan[x-1][y+2] = 2;
             }
-            else this->result = step;
+            else {
+                this->result = step + 1;
+                flag = 1;
+            }
         }
     }
-    if (x+1 <= this->qipan.size() && y-2 >= 0){
+    if (x+1 <= this->qipan.size() && y-2 >= 0 && !flag){
         if (this->qipan[x+1][y-2] != 2) {
             if (this->qipan[x+1][y-2] != 1) {
                 stack.push_back(make_tuple(x+1, y-2, step+1));
                 this->qipan[x+1][y-2] = 2;
             }
-            else this->result = step;
+            else {
+                this->result = step + 1;
+                flag = 1;
+            }
         }
     }
-    if (x+1 <= this->qipan.size() && y+2 <= this->qipan[0].size()){
+    if (x+1 <= this->qipan.size() && y+2 <= this->qipan[0].size() && !flag){
         if (this->qipan[x+1][y+2] != 2) {
             if (this->qipan[x+1][y+2] != 1) {
                 stack.push_back(make_tuple(x+1, y+2, step+1));
                 this->qipan[x+1][y+2] = 2;
             }
-            else this->result = step;
+            else {
+                this->result = step + 1;
+                flag = 1;
+            }
         }
     }
-    if (x-2 >= 0 && y-1 >= 0){
+    if (x-2 >= 0 && y-1 >= 0 && !flag){
         if (this->qipan[x-2][y-1] != 2) {
             if (this->qipan[x-2][y-1] != 1) {
                 stack.push_back(make_tuple(x-2, y-1, step+1));
                 this->qipan[x-2][y-1] = 2;
             }
-            else this->result = step;
+            else {
+                this->result = step + 1;
+                flag = 1;
+            }
         }
     }
-    if (x-2 >= 0 && y+1 <= this->qipan[0].size()){
+    if (x-2 >= 0 && y+1 <= this->qipan[0].size() && !flag){
         if (this->qipan[x-2][y+1] != 2) {
             if (this->qipan[x-2][y+1] != 1) {
                 stack.push_back(make_tuple(x-2, y+1, step+1));
                 this->qipan[x-2][y+1] = 2;
             }
-            else this->result = step;
+            else {
+                this->result = step + 1;
+                flag = 1;
+            }
         }
     }
-    if (x+2 <= this->qipan.size() && y-1 >= 0){
+    if (x+2 <= this->qipan.size() && y-1 >= 0 && !flag){
         if (this->qipan[x+2][y-1] != 2) {
             if (this->qipan[x+2][y-1] != 1) {
                 stack.push_back(make_tuple(x+2, y-1, step+1));
                 this->qipan[x+2][y-1] = 2;
             }
-            else this->result = step;
+            else {
+                this->result = step + 1;
+                flag = 1;
+            }
         }
     }
-    if (x+2 <= this->qipan.size() && y+1 <= this->qipan[0].size()){
+    if (x+2 <= this->qipan.size() && y+1 <= this->qipan[0].size() && !flag){
         if (this->qipan[x+2][y+1] != 2) {
             if (this->qipan[x+2][y+1] != 1) {
                 stack.push_back(make_tuple(x+2, y+1, step+1));
                 this->qipan[x+2][y+1] = 2;
             }
-            else this->result = step;
+            else {
+                this->result = step +1;
+                flag = 1;
+            }
         }
     }
-    if (this->result != 1){
+    if (!this->result){
+        this->qipan[get<0>(stack.front())][get<1>(stack.front())] = 2;
         stack.erase(stack.begin());
         this->move(stack, get<0>(stack.front()), get<1>(stack.front()), get<2>(stack.front()));
     }
 }
 void KnightMoves::BFS() {
-    shared_ptr<vector<tuple<int, int, int>>> stack = make_shared<vector<tuple<int, int, int>>>();
-    stack->push_back(make_tuple(this->start_axis.first, this->start_axis.second, 1));
-    this->move(*stack, this->start_axis.first, this->start_axis.second, 1);
+    if (this->start == this->end) this->result = 0;
+    else{
+        shared_ptr<vector<tuple<int, int, int>>> stack = make_shared<vector<tuple<int, int, int>>>();
+        stack->push_back(make_tuple(this->start_axis.first, this->start_axis.second, 0));
+        this->move(*stack, this->start_axis.first, this->start_axis.second, 0);
+    }
+
 }
